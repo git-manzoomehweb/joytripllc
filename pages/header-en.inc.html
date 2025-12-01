@@ -1,0 +1,83 @@
+<basis core="dbsource" source="basiscore" name="db" mid="5" lid="1" usedforid="[##cms.cms.ownerid##]">
+    <member name="info" type="view" />
+</basis>
+<header class="header">
+    <div class="bc-main">
+        <div class="width_50 float-left left-header">
+            <a href="/" class="logo-container"><img src="[##cms.cms.cdn##]/images/logo.png" width="120" height="75"
+                    alt="joytrip" /></a>
+            <div class="default-header">
+                <nav class="font_18 search-nav">
+                    <ul class="search-nav-bar">
+                        <li class="active"><a href="/"> Home
+                            </a></li>
+                        <li><a href="/oman-hotels">Hotel</a></li>
+                        <li><a href="/visa-list.bc?catid=154240">Visa</a></li>
+                        <li><a href="/contact"> Contact</a></li>
+                        <li><a href="/about">About</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="mobile-header unvisible">
+                <div class="col1-mobile-header float-left">
+                    <a href="#menu" class="menu_link float-left"><span></span></a>
+                </div>
+                <div class="col2-mobile-header float-left p-relative col3-second-part-header"></div>
+                <nav id="menu" class="unvisible">
+                    <div class="top-menu background-color_1">
+                        <img src="[##cms.cms.cdn##]/images/M_logo.png" alt="lachintravel" width="120" height="75" />
+                        <div class="clr"></div>
+                    </div>
+                    <ul>
+                        <li class="Selected"><a href="/"><i class="fa fa-home"></i>Home</a>
+                        </li>
+                        <li><a href="/oman-hotels"><i class="fa fa-link"></i>Hotel</a></li>
+                        <li><a href="/visa-list.bc?catid=154240"><i class="fa fa-link"></i>Visa</a></li>
+                        <li><a href="/contact"><i class="fa fa-link"></i>Contact</a>
+                        </li>
+                        <li><a href="/about"><i class="fa fa-link"></i>About</a>
+                        </li>
+                    </ul>
+                </nav>
+                <div class="clr"></div>
+            </div>
+        </div>
+        <div class="width_50 float-right text-right right-header">
+            <span class="show-contact-content" onclick="sidebar_collapse(this)">
+                <i class="fa fa-phone"></i>
+                <svg version="1.0" fill="#000000" xmlns="http://www.w3.org/2000/svg" width="20pt" height="20pt"
+                    viewBox="0 0 512.000000 512.000000" preserveAspectRatio="xMidYMid meet">
+
+                    <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)" stroke="none">
+                        <path d="M1456 4340 c-107 -33 -185 -152 -173 -265 9 -89 61 -165 142 -208
+            l40 -22 1735 0 1735 0 40 22 c92 49 139 127 140 228 0 102 -48 183 -138 232
+            -30 17 -129 18 -1762 20 -952 1 -1743 -2 -1759 -7z" />
+                        <path d="M200 2809 c-90 -18 -182 -113 -196 -204 -10 -67 3 -129 39 -182 42
+            -62 99 -101 167 -113 37 -7 843 -9 2385 -8 2110 3 2333 5 2365 19 52 24 97 65
+            128 118 23 39 27 57 27 121 0 64 -4 82 -27 121 -31 53 -76 94 -128 118 -32 15
+            -254 16 -2375 17 -1325 1 -2360 -2 -2385 -7z" />
+                        <path d="M2479 1266 c-222 -79 -234 -378 -19 -475 44 -20 59 -21 1246 -21
+            1337 0 1256 -4 1332 69 57 56 77 104 77 186 -1 52 -6 81 -22 111 -31 58 -104
+            119 -158 133 -68 17 -2407 15 -2456 -3z" />
+                    </g>
+                </svg>
+
+            </span>
+            <div class="Login_Information text-left">
+                <basis core="call" file="authentication/modal/En"></basis>
+            </div>
+            <div class="currency-rate font_13 p-relative">
+                <span class="currency-loading p-absolute unvisible"><i class="fas fa-spinner fa-spin"></i></span>
+                <div class="currency-content">
+                    <div class="currency-selected cursor-pointer border-radius" data-active="0"
+                        onclick="currency_selected(this)"><span>--Currency--</span></div>
+                    <div class="currency-list unvisible font_12 p-absolute">
+                        <ul></ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="clr"></div>
+    </div>
+    <div class="clr"></div>
+</header>

@@ -1,0 +1,167 @@
+<basis core="dbsource" source="trust_login8" mid="24" name="db" lid="1" rkey="[##cms.cookie.rkey##]">
+    <member name="userid-point" type="scalar" request="userid" preview="" />
+</basis>
+<basis core="group" name="Delay_point">
+    <basis core="external.fly.ws" source="cmsDbService2" procedurename="dbsource" name="db">
+        <member name="check_member_point" method="cms" query='{
+            "name": "db",
+            "member": [
+                {
+                    "type": "list",
+                    "name": "check_member_point",
+                    "request": "checkMemberPoint",
+                    "dmnid": "[##cms.cms.domainid##]",
+                    "ownerid": "[##cms.cms.ownerid##]",
+                    "userid": "[##db.userid-point.userid##]"
+                }
+            ]
+        }' />
+    </basis>
+    <basis core="group" name="Delay_point">
+        <basis core="inlinesource" name="db">
+            <member name="check_member_point_tree" format="json"
+                postsql="select  Id , ParentId , case when trim(Field) is null  then  (select field from [db.check_member_point_tree] where id = a.parentid ) else field end as field, value , type , path  from [db.check_member_point_tree] as a">
+                {"root":[##db.check_member_point.result##]} </member>
+            <member name="check_total_point" format="json"
+                postsql="select value from [db.check_total_point] where field = 'total_point'">
+                {"root":[##db.check_member_point.result##]} </member>
+
+        </basis>
+        <basis core="group" name="check_total_point" if="[##db.check_total_point.Value##] <> 0">
+            <input type="hidden" value="[##cms.query.type##]" class="type-point" />
+            <basis core="tree" datamembername="db.check_member_point_tree" idcol="id" parentidcol="parentid"
+                nullvalue="null">
+                <layout>
+                    <input type="checkbox" onchange="discount_member_point(this)" value="1" name="discount" />
+                    <label><span class="radiobox"></span></label>
+                    <div class="section-discount">
+                        <div class="box_tlt"><span class="shopper-icon"><i class="fas fa-tags"></i></span><span>Customer club </span></div>
+                        <div class="section-discount-wrapper unvisible">@child
+                            <div class="clr"></div>
+                            <button type="button" class="section-discount-btn ok"
+                                onclick="enable_club_discount(this)">Use discounts</button>
+                            <button type="button" class="section-discount-btn nok"
+                                onclick="disable_club_discount(this)">Cancellation</button>
+                            <span class="message_club_discount"></span>
+                        </div>
+                    </div>
+                    <div class="clr"></div>
+                </layout>
+                <face filter="field = 'total_point'">
+                    <div class="section-discount-part"><span class="section-discount-title"> Your score : </span><span
+                            class="total_point_text">@value</span></div>
+                </face>
+                <face filter="field = 'discount'">
+                    <div class="section-discount-part">@child</div>
+                </face>
+                <face filter="field = 'price'">
+                    <input type="hidden" value="@value" class="price_club_discount_value" />
+                    <span class="section-discount-title">Total discount amount: </span><span
+                        class="price_club_discount">@value</span>
+                </face>
+                <face filter="field = 'discount_rate'">
+                    <span class="section-discount-title">Applicable amount : </span> <span class="used_discount">
+                    </span>
+                    <span class="discount_rate_unit"> </span>
+                    <input type="hidden" value="@value" class="discount_rate" />
+                    <input type="hidden" value="@value" class="used_discount_value" />
+                </face>
+                <face filter="field = 'money_type'">
+                    <span>@value</span>
+                </face>
+                <face filter="type in ('object','array')">@child</face>
+            </basis>
+        </basis>
+        <script type="text/javascript">
+            //<!------EXTERA SERVICE------->//
+            var sum_extra_service = 0;
+            $("#passengers").find(".passengerInfo").each(function(){
+            if($(this).find(".extra_service_cost_output").val()){
+                sum_extra_service += parseFloat($(this).find(".extra_service_cost_output").val())
+            } else{
+                sum_extra_service += 0
+            }
+            })
+           //<!------EXTERA SERVICE------->//
+            // <!-----------START CLUB DISCOUNT JS-----------> //
+            $(".price_club_discount").text(new Intl.NumberFormat().format($(".price_club_discount").text()))
+            $(".total_point_text").text(parseFloat(parseFloat($(".total_point_text").text()).toFixed(3).toString()))
+           // if ($(".type-point").val() == '1') {
+                function discount_member_point(element) {
+                    // add service
+                    if($(".transfer-count-select").val()) {
+                      sum_extra_service = 0
+                     } 
+                    // add service
+                    $(".message_club_discount").empty()
+                    $(".club_discount").val(0)
+                    $(".finalprice").each(function () {
+                        $(this).text(parseFloat($(".price_firstpay").val()) + parseFloat(sum_extra_service))
+                        $(this).text(new Intl.NumberFormat().format($(this).text()))
+                    })
+                    //<!------PAYMENT BY CREDIT------->//
+                    $(".price_remaining_of_credit").text($(".price_remaining_of_credit_val").val())
+                    $(".price_remaining_of_credit").text(new Intl.NumberFormat().format($(".price_remaining_of_credit").text()))
+                    $(".finalprice_totalCom").text(parseFloat($(".totalcom").val()) + parseFloat(sum_extra_service))
+                    $(".finalprice_totalCom").text(new Intl.NumberFormat().format($(".finalprice_totalCom").text()))
+                    //<!------PAYMENT BY CREDIT------->//
+                    if ($(element).is(':checked')) {
+                        $(element).closest(".wrapper-discount").find(".section-discount-wrapper").show()
+                        $(element).closest(".wrapper-discount").siblings(".wrapper-discount").find(".section-discount-wrapper").hide()
+                        $(element).closest(".wrapper-discount").siblings(".wrapper-discount").find("input[type='checkbox']").prop('checked', false)
+                        //<!------CHECK AMOUNT USED DISCOUNT------->//
+                        var sum = parseFloat($(".price_firstpay").val()) + parseFloat(sum_extra_service)
+                        var used_discount = Math.min(sum * $(".discount_rate").val(),
+                        $(".price_club_discount_value").val());
+                        $(".used_discount").text(used_discount)
+                        $(".used_discount").text(new Intl.NumberFormat().format($(".used_discount").text()))
+                        $(".used_discount_value").val(used_discount)
+                        $(".discount_rate_unit").text($(".moneytypeInfo").val())
+                        //<!------CHECK AMOUNT USED DISCOUNT------->//
+                    } else {
+                        $(element).closest(".wrapper-discount").find(".section-discount-wrapper").hide()
+                    }
+                }
+
+                function enable_club_discount(element) {
+                    var sum = parseFloat($(".price_firstpay").val()) + parseFloat(sum_extra_service)
+                    var sum2 = parseFloat($(".totalcom").val()) + parseFloat(sum_extra_service)
+                    $(element).closest(".wrapper-discount").find(".message_club_discount").text('The club discount was applied')
+                    $(element).closest(".wrapper-discount").find(".message_club_discount").addClass('active_discount')
+                    $(element).closest(".wrapper-discount").find(".message_club_discount").removeClass('disactive_discount')
+                    $(".club_discount").val(1)
+                    $(".finalprice").each(function () {
+                        $(this).text(parseFloat(sum) - parseFloat($(".used_discount_value").val()))
+                        $(this).text(new Intl.NumberFormat().format($(this).text()))
+                    })
+                    //<!------PAYMENT BY CREDIT------->//
+                    $(".price_remaining_of_credit").text(parseFloat($(".price_remaining_of_credit_val").val()) - parseFloat($(".used_discount_value").val()))
+                    $(".price_remaining_of_credit").text(new Intl.NumberFormat().format($(".price_remaining_of_credit").text()))
+                    $(".finalprice_totalCom").text(parseFloat(sum2) - parseFloat($(".used_discount_value").val()))
+                    $(".finalprice_totalCom").text(new Intl.NumberFormat().format($(".finalprice_totalCom").text()))
+                    //<!------PAYMENT BY CREDIT------->//
+                }
+
+                function disable_club_discount(element) {
+                    var sum = parseFloat($(".price_firstpay").val()) + parseFloat(sum_extra_service)
+                    var sum2 = parseFloat($(".totalcom").val()) + parseFloat(sum_extra_service)
+                    $(element).closest(".wrapper-discount").find(".message_club_discount").text('The club discount was canceled')
+                    $(element).closest(".wrapper-discount").find(".message_club_discount").removeClass('active_discount')
+                    $(element).closest(".wrapper-discount").find(".message_club_discount").addClass('disactive_discount')
+                    $(".club_discount").val(0)
+                    $(".finalprice").each(function () {
+                        $(this).text(parseFloat(sum))
+                         $(this).text(new Intl.NumberFormat().format($(this).text()))
+                    })
+                    //<!------PAYMENT BY CREDIT------->//
+                    $(".price_remaining_of_credit").text($(".price_remaining_of_credit_val").val())
+                    $(".price_remaining_of_credit").text(new Intl.NumberFormat().format($(".price_remaining_of_credit").text()))
+                    $(".finalprice_totalCom").text(sum2)
+                    $(".finalprice_totalCom").text(new Intl.NumberFormat().format($(".finalprice_totalCom").text()))
+                    //<!------PAYMENT BY CREDIT------->//
+                }
+           // }
+            // <!-----------START CLUB DISCOUNT JS-----------> //
+        </script>
+    </basis>
+</basis>

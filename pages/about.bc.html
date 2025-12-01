@@ -1,0 +1,76 @@
+<basis core="dbsource" name="captcha" source="trust_login">
+    <member name="code" type="scalar" request="captcha"></member>
+</basis>
+<basis core="dbsource" source="basiscore" name="db" lid="2" request="seo">
+    <member name="list" type="list" request="cat" id="[##cms.query.catid##]" />
+</basis>
+
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+<head>
+    <title>[##cms.seo.title|db.list.title##]</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="[##cms.seo.title|db.list.title##]">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="joytrip">
+    <meta property="og:image" content="[##cms.cms.cdn##]/images/logo.png">
+    <meta property="og:image:width" content="100">
+    <meta property="og:image:height" content="85">
+    <meta property="og:image:secure_url" content="[##cms.cms.cdn##]/images/logo.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:alt" content="joytrip">
+    <meta name="author" content="BasisCore">
+    <meta name="enamad" content="">
+    <link href="[##cms.cms.cdn##]/css/joytrip-pages.css" type="text/css" rel="stylesheet" />
+</head>
+
+<body>
+    <main class="dir-ltr">
+        <basis core="call" file="header-en.inc" />
+        <section class="content">
+            <section class="loginRegister"></section>
+            <section class="item-container">
+                <div class="bc-main">
+                    <div class="page-box-title">
+                        <h1 class="title">About</h1>
+                        <p class="sub-title font_16">Discover amzaing places </p>
+                    </div>
+                    <div class="about-container">
+                        <div class="width_40 float-left left-about">
+                            <basis core="print" datamembername="db.info">
+                                <face filter="prpid = 8004">
+                                    <div class="about-content">
+                                        <div class="color_gray font_14 text-justify">@answer</div>
+                                    </div>
+                                </face>
+                            </basis>
+                          
+                        </div>
+                        <div class="width_60 float-right right-contact">
+                            <div class="about-images">
+                                <div class="about-image"><img class="lozad" data-src="[##cms.cms.cdn##]/images/about-img-1.jpg" width="" heigth="" alt=""/></div>
+                                <div class="about-image"><img class="lozad" data-src="[##cms.cms.cdn##]/images/about-img-2.jpg" width="" heigth="" alt=""/></div>
+                                <div class="about-image"><img class="lozad" data-src="[##cms.cms.cdn##]/images/about-img-3.jpg" width="" heigth="" alt=""/></div>
+                                <div class="about-image"><img class="lozad" data-src="[##cms.cms.cdn##]/images/about-img-4.jpg" width="" heigth="" alt=""/></div>
+                                <div class="about-image"><img class="lozad" data-src="[##cms.cms.cdn##]/images/about-img-5.jpg" width="" heigth="" alt=""/></div>
+                              </div>
+                        </div>
+                        <div class="clr"></div>
+                    </div>
+                    <div class="bg-glass p-absolute"><span class="circle-one"></span><span class="circle-two"></span>
+                    </div>
+                </div>
+            </section>
+         
+        </section>
+        <script src="https://cdn.basiscore.net/basisfly.com/js/reservation_js_library.js" type="text/javascript"></script>
+        <basis core="call" file="footer-en.inc" />
+    </main>
+    <script src="https://cdn.basiscore.net/basisfly.com/js/reservation_lozad.min.js" type="text/javascript"></script>
+</body>
+
+</html>

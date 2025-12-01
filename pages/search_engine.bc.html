@@ -1,0 +1,326 @@
+<basis core="dbsource" source="trust_login8" mid="24" name="db" lid="1" rkey="[##cms.cookie.rkey##]">
+    <member name="loaduserid" type="scalar" request="userid" preview="" />
+</basis>
+<basis core="group" if="'[##db.loaduserid.userid##]' = '0'" name="Delay">
+    <basis core="dbsource" name="captcha" source="trust_login">
+        <member name="code" type="scalar" request="captcha"></member>
+    </basis>
+    <div class="login-box-content">
+        <ul class="login-type color_grey font_13">
+            <li class="border-radius active-moudle cursor-pointer Link-Login-New" onclick="Login(this)">
+                LOGIN</li>
+
+            <li class="border-radius cursor-pointer Link-Register" onclick="register(this)">
+                REGISTER
+            </li>
+            <li class="border-radius cursor-pointer Link-Forgetpass" onclick="forgetpass(this)">
+                FORGET PASSWORD
+            </li>
+            <li class="border-radius cursor-pointer Link-ResendMail" onclick="ResendEmail(this)">
+                RESEND EMAIL
+            </li>
+        </ul>
+        <div id="search">
+            <div class="Wrapper Wrapper-logininfo">
+                <form class="form-search login-form-content Form_User" onsubmit="login_form_submit(event,this)"
+                    method="post" action="/Client_Login_Confirmation_En_ver.2.bc">
+                    <input type="hidden" name="redirect_homepage" value="1" />
+                    <div class="login p-relative float-left width_30">
+                        <div class="inner-container transition p-relative">
+                            <div class="input-container p-relative">
+                                <i class="fa fa-user icon-field"></i>
+                                <input type="text" name="Username" id="login-email" required="" autocomplete="off"
+                                    value="" />
+                                <label for="login-email">Email</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="login p-relative float-left width_30">
+                        <div class="inner-container transition p-relative">
+                            <div class="input-container p-relative">
+                                <i class="fa fa-lock icon-field"></i>
+                                <input type="password" name="Password" id="login-password" required=""
+                                    autocomplete="off" value="" />
+                                <label for="login-password">Password</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="login p-relative float-left width_30">
+                        <div class="inner-container transition p-relative">
+                            <div class="input-container p-relative">
+                                <i class="refreshimg refresh-img fa fa-sync icon-field cursor-pointer"></i>
+                                <input type="text" name="Captcha" id="login-captcha" required="" autocomplete="off"
+                                    value="" />
+                                <span class="captcha_img captchaa1">
+                                    <img class="captchaa" alt="Security code" src="[##captcha.code.captcha##]"
+                                        width="80" height="40" />
+                                    <input type="hidden" value="[##captcha.code.captcha##]" name="Captchaid" />
+                                </span>
+                                <label for="logincaptcha">Captcha</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="float-right width_10 text-right">
+                        <button type="submit"
+                            class="submitForm form_search-btn background-color_1 color_white cursor-pointer">
+                            <i class="fa fa-user"></i>
+                        </button>
+                    </div>
+                    <div class="clr"></div>
+                    <div class="error-login Message-LoginRegister text-center"></div>
+                    <div class="loadingLog Loading-LoginRegister">
+                        <div id="ballsWaveG">
+                            <div id="ballsWaveG_1" class="ballsWaveG"></div>
+                            <div id="ballsWaveG_2" class="ballsWaveG"></div>
+                            <div id="ballsWaveG_3" class="ballsWaveG"></div>
+                            <div id="ballsWaveG_4" class="ballsWaveG"></div>
+                            <div id="ballsWaveG_5" class="ballsWaveG"></div>
+                            <div id="ballsWaveG_6" class="ballsWaveG"></div>
+                            <div id="ballsWaveG_7" class="ballsWaveG"></div>
+                            <div id="ballsWaveG_8" class="ballsWaveG"></div>
+                        </div>
+                    </div>
+                    <div class="fcap text-center">Security code is incorrect</div>
+                    <div class="clr"></div>
+                </form>
+                <div class="clr"></div>
+            </div>
+            <div class="Wrapper Wrapper-registerinfo">
+                <form class="form-search login-form-content Form_User" onsubmit="login_form_submit(event,this)"
+                    method="post" action="/Client_Register_Confirmation_en.bc">
+                    <div class="login p-relative float-left width_20">
+                        <div class="inner-container transition p-relative">
+                            <div class="input-container p-relative">
+                                <i class="fa fa-user icon-field"></i>
+                                <input type="text" name="Username" id="register-email" required="" autocomplete="off"
+                                    value="" />
+                                <label for="register-email">Email</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="login p-relative float-left width_20">
+                        <div class="inner-container transition p-relative">
+                            <div class="input-container p-relative">
+                                <i class="fa fa-lock icon-field"></i>
+                                <input type="password" name="Password" id="register-password" required=""
+                                    autocomplete="off" value="" />
+                                <label for="register-password">Password</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="login p-relative float-left width_20">
+                        <div class="inner-container transition p-relative">
+                            <div class="input-container p-relative">
+                                <i class="fa fa-lock icon-field"></i>
+                                <input type="password" name="RepeatPassword" id="register-repeatPassword" required=""
+                                    autocomplete="off" value="" />
+                                <label for="register-repeatPassword">Repeat Password</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="login p-relative float-left width_30">
+                        <div class="inner-container transition p-relative">
+                            <div class="input-container p-relative">
+                                <i class="refreshimg refresh-img fa fa-sync icon-field cursor-pointer"></i>
+                                <input type="text" name="Captcha" id="register-captcha" required="" autocomplete="off"
+                                    value="" />
+                                <span class="captcha_img captchaa1">
+                                    <img class="captchaa" alt="Security code" src="[##captcha.code.captcha##]"
+                                        width="80" height="40" />
+                                    <input type="hidden" value="[##captcha.code.captcha##]" name="Captchaid" />
+                                </span>
+                                <label for="register-captcha">Captcha</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="float-right width_10 text-right">
+                        <button type="submit"
+                            class="submitForm form_search-btn background-color_1 color_white cursor-pointer">
+                            <i class="fa fa-user"></i>
+                        </button>
+                    </div>
+                    <div class="clr"></div>
+                    <div class="error-login Message-LoginRegister text-center"></div>
+                    <div class="loadingLog Loading-LoginRegister">
+                        <div id="ballsWaveG">
+                            <div id="ballsWaveG_1" class="ballsWaveG"></div>
+                            <div id="ballsWaveG_2" class="ballsWaveG"></div>
+                            <div id="ballsWaveG_3" class="ballsWaveG"></div>
+                            <div id="ballsWaveG_4" class="ballsWaveG"></div>
+                            <div id="ballsWaveG_5" class="ballsWaveG"></div>
+                            <div id="ballsWaveG_6" class="ballsWaveG"></div>
+                            <div id="ballsWaveG_7" class="ballsWaveG"></div>
+                            <div id="ballsWaveG_8" class="ballsWaveG"></div>
+                        </div>
+                    </div>
+                    <div class="fcap text-center">Security code is incorrect</div>
+                    <div class="clr"></div>
+                </form>
+                <div class="clr"></div>
+            </div>
+            <div class="Wrapper Wrapper-forgetpass">
+                <form class="form-search login-form-content Form_User" onsubmit="login_form_submit(event,this)"
+                    method="post" action="/Client_Recovery_Pass_en.bc">
+                    <div class="login p-relative float-left width_40">
+                        <div class="inner-container transition p-relative">
+                            <div class="input-container p-relative">
+                                <i class="fa fa-user icon-field"></i>
+                                <input type="text" name="username" id="forgetpass-email" required="" autocomplete="off"
+                                    value="" />
+                                <label for="forgetpass-email">Email</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="login p-relative float-left width_40">
+                        <div class="inner-container transition p-relative">
+                            <div class="input-container p-relative">
+                                <i class="refreshimg refresh-img fa fa-sync icon-field cursor-pointer"></i>
+                                <input type="text" name="Captcha" id="forgetpass-captcha" required="" autocomplete="off"
+                                    value="" />
+                                <span class="captcha_img captchaa1">
+                                    <img class="captchaa" alt="Security code" src="[##captcha.code.captcha##]"
+                                        width="80" height="40" />
+                                    <input type="hidden" value="[##captcha.code.captcha##]" name="Captchaid" />
+                                </span>
+                                <label for="forgetpass-captcha">Captcha</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="float-right width_10 text-right">
+                        <button type="submit"
+                            class="submitForm form_search-btn background-color_1 color_white cursor-pointer">
+                            <i class="fa fa-user"></i>
+                        </button>
+                    </div>
+                    <div class="clr"></div>
+                    <div class="error-login Message-LoginRegister text-center"></div>
+                    <div class="loadingLog Loading-LoginRegister">
+                        <div id="ballsWaveG">
+                            <div id="ballsWaveG_1" class="ballsWaveG"></div>
+                            <div id="ballsWaveG_2" class="ballsWaveG"></div>
+                            <div id="ballsWaveG_3" class="ballsWaveG"></div>
+                            <div id="ballsWaveG_4" class="ballsWaveG"></div>
+                            <div id="ballsWaveG_5" class="ballsWaveG"></div>
+                            <div id="ballsWaveG_6" class="ballsWaveG"></div>
+                            <div id="ballsWaveG_7" class="ballsWaveG"></div>
+                            <div id="ballsWaveG_8" class="ballsWaveG"></div>
+                        </div>
+                    </div>
+                    <div class="fcap text-center">Security code is incorrect</div>
+                    <div class="clr"></div>
+                </form>
+                <div class="clr"></div>
+            </div>
+            <div class="Wrapper Wrapper-resendmail">
+                <form class="form-search login-form-content Form_User" onsubmit="login_form_submit(event,this)"
+                    method="post" action="/Client_Email_Resend_Get_en.bc">
+                    <div class="login p-relative float-left width_40">
+                        <div class="inner-container transition p-relative">
+                            <div class="input-container p-relative">
+                                <i class="fa fa-user icon-field"></i>
+                                <input type="text" name="username" id="resend-email" required="" autocomplete="off"
+                                    value="" />
+                                <label for="resend-email">Email</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="login p-relative float-left width_40">
+                        <div class="inner-container transition p-relative">
+                            <div class="input-container p-relative">
+                                <i class="refreshimg refresh-img fa fa-sync icon-field cursor-pointer"></i>
+                                <input type="text" name="Captcha" id="resend-captcha" required="" autocomplete="off"
+                                    value="" />
+                                <span class="captcha_img captchaa1">
+                                    <img class="captchaa" alt="Security code" src="[##captcha.code.captcha##]"
+                                        width="80" height="40" />
+                                    <input type="hidden" value="[##captcha.code.captcha##]" name="Captchaid" />
+                                </span>
+                                <label for="resend-captcha">Captcha</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="float-right width_10 text-right">
+                        <button type="submit"
+                            class="submitForm form_search-btn background-color_1 color_white cursor-pointer">
+                            <i class="fa fa-user"></i>
+                        </button>
+                    </div>
+                    <div class="clr"></div>
+                    <div class="error-login Message-LoginRegister text-center"></div>
+                    <div class="loadingLog Loading-LoginRegister">
+                        <div id="ballsWaveG">
+                            <div id="ballsWaveG_1" class="ballsWaveG"></div>
+                            <div id="ballsWaveG_2" class="ballsWaveG"></div>
+                            <div id="ballsWaveG_3" class="ballsWaveG"></div>
+                            <div id="ballsWaveG_4" class="ballsWaveG"></div>
+                            <div id="ballsWaveG_5" class="ballsWaveG"></div>
+                            <div id="ballsWaveG_6" class="ballsWaveG"></div>
+                            <div id="ballsWaveG_7" class="ballsWaveG"></div>
+                            <div id="ballsWaveG_8" class="ballsWaveG"></div>
+                        </div>
+                    </div>
+                    <div class="fcap text-center">Security code is incorrect</div>
+                    <div class="clr"></div>
+                </form>
+                <div class="clr"></div>
+            </div>
+
+
+        </div>
+    </div>
+    <script>$(".login-type li").click(function () { $(this).addClass("active-moudle"); $(this).siblings("li").removeClass("active-moudle"); });
+        function login_form_submit(event, element) {
+            var self = $(element)
+            self.closest("form").find(".loadingLog").show()
+            event.preventDefault()
+            $.ajax({
+                url: self.attr("action"),
+                type: self.attr("method"),
+                data: $(self).serialize(),
+                success: function (response) {
+                    self.closest("form").find(".loadingLog").hide()
+                    self.closest("form").find('.error-login').empty().show().html(response);
+                }
+            });
+        }
+        $(".refreshimg").each(function () {
+            $(this).click(function () {
+                $(this).closest("form").find(".captcha_img").load("/Client_Captcha.bc");
+            })
+        });
+        function register(element) {
+            $(".Wrapper-registerinfo").show()
+            $(".Wrapper-logininfo").hide()
+            $(".Wrapper-forgetpass").hide()
+            $(".Wrapper-resendmail").hide()
+        }
+
+        function Login(element) {
+            $(".Wrapper-registerinfo").hide()
+            $(".Wrapper-logininfo").show()
+            $(".Wrapper-forgetpass").hide()
+            $(".Wrapper-resendmail").hide()
+            $(".login-form_new").show()
+            $(".login-form_prev").hide()
+        }
+
+        function forgetpass(element) {
+            $(".Wrapper-registerinfo").hide()
+            $(".Wrapper-logininfo").hide()
+            $(".Wrapper-forgetpass").show()
+            $(".Wrapper-resendmail").hide()
+        }
+
+        function ResendEmail(element) {
+            $(".Wrapper-registerinfo").hide()
+            $(".Wrapper-logininfo").hide()
+            $(".Wrapper-forgetpass").hide()
+            $(".Wrapper-resendmail").show()
+        }
+
+    </script>
+</basis>
+<basis core="group" if="'[##db.loaduserid.userid##]' <> '0'" name="Delay">
+    <basis core="call" file="Client_RkeyScript.inc"></basis>
+    <div id="search-box"></div>
+</basis>

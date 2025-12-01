@@ -1,0 +1,429 @@
+<div class="search-box-content">
+    <ul class="search-type color_grey font_13">
+        <li class="border-radius active-moudle cursor-pointer" id="Hotel" data-id="item-Hotel">
+            HOTEL</li>
+
+        <li class="border-radius cursor-pointer" id="Tour" data-id="item-Tour">
+            TOUR
+        </li>
+        <li class="border-radius cursor-pointer" id="Visa" data-id="item-Visa">
+            VISA
+        </li>
+    </ul>
+    <div id="search">
+        <div id="item-Hotel">
+            <form id="hotel-form" class="form-search" method="post" action="/Tem3_Hotel_Search_EN.bc">
+                <input type="hidden" name="currentdate" class="currentdate" value="" />
+                <div class="city p-relative float-left width_25">
+                    <div class="inner-container transition p-relative">
+                        <div class="input-container p-relative">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" class="icon-field"
+                                fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z">
+                                </path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            </svg>
+                            <input type="text" onclick="empty_value(this)" name="coHotel" id="dep-hotel"
+                                oninput="city_search(this)" data-type="3" class="country" required="" autocomplete="off"
+                                value="Dubai - United Arab Emirates" />
+                            <label for="dep-hotel">Location</label>
+
+                        </div>
+                        <input value="1173505" class="co-id" type="hidden" name="cityid" />
+                        <span class="mini-loading p-absolute unvisible"><i class="fas fa-spinner fa-spin"></i></span>
+                        <div class="countryFlight p-absolute"></div>
+                        <div class="searchList unvisible p-absolute width_100">
+                            <ul class="ul-list color_grey">
+                                <li onclick="SelectPlace(this)" data-id="1173505"><svg
+                                        xmlns="http://www.w3.org/2000/svg" width="25" height="25" class="icon-map"
+                                        fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                            d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z">
+                                        </path>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                            d="M15 11a3 3 0 11-6 0 3 3 0 016 0z">
+                                        </path>
+                                    </svg><span>Dubai -
+                                        United Arab Emirates</span></li>
+                                <li onclick="SelectPlace(this)" data-id="1167397"><svg
+                                        xmlns="http://www.w3.org/2000/svg" width="25" height="25" class="icon-map"
+                                        fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                            d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z">
+                                        </path>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                            d="M15 11a3 3 0 11-6 0 3 3 0 016 0z">
+                                        </path>
+                                    </svg><span>United Arab Emirates - Abu Dhabi</span></li>
+                                <li onclick="SelectPlace(this)" data-id="1188392"><svg
+                                        xmlns="http://www.w3.org/2000/svg" width="25" height="25" class="icon-map"
+                                        fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                            d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z">
+                                        </path>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                            d="M15 11a3 3 0 11-6 0 3 3 0 016 0z">
+                                        </path>
+                                    </svg><span>United Arab Emirates - Sharjah</span></li>
+                                <li onclick="SelectPlace(this)" data-id="1182289"><svg
+                                        xmlns="http://www.w3.org/2000/svg" width="25" height="25" class="icon-map"
+                                        fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                            d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z">
+                                        </path>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                            d="M15 11a3 3 0 11-6 0 3 3 0 016 0z">
+                                        </path>
+                                    </svg><span>Oman - Muscat</span></li>
+                                <li onclick="SelectPlace(this)" data-id="1180829"><svg
+                                        xmlns="http://www.w3.org/2000/svg" width="25" height="25" class="icon-map"
+                                        fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                            d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z">
+                                        </path>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                            d="M15 11a3 3 0 11-6 0 3 3 0 016 0z">
+                                        </path>
+                                    </svg><span>Maldives - Malé, Maldives</span></li>
+
+                                <li onclick="SelectPlace(this)" data-id="1185925"><svg
+                                        xmlns="http://www.w3.org/2000/svg" width="25" height="25" class="icon-map"
+                                        fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                            d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z">
+                                        </path>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                            d="M15 11a3 3 0 11-6 0 3 3 0 016 0z">
+                                        </path>
+                                    </svg><span>United Arab Emirates - Ras Al Khaima </span></li>
+
+
+
+                            </ul>
+                            <div class="clr"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="Basis_Date_Box float-left width_40">
+                    <div class="width_50 float-left result-for p-relative">
+                        <div class="input-container p-relative cursor-pointer transition">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" class="icon-field"
+                                fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z">
+                                </path>
+                            </svg>
+                            <input type="text" value="" class="Basis_Date start_date"
+                                onclick="Basis_Calendar(this,'[##cms.cms.date##]', 1)" data-active="0" data-cache="0"
+                                readonly="" name="fdate" required="" id="date-dep-hotel" />
+                            <span></span>
+                            <label for="date-dep-hotel">Check in</label>
+                            <div class="clr"></div>
+                        </div>
+
+                        <div class="clr"></div>
+                    </div>
+                    <div class="width_50 float-left result-for p-relative">
+                        <div class="input-container p-relative cursor-pointer transition">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" class="icon-field"
+                                fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z">
+                                </path>
+                            </svg>
+
+                            <input type="text" value="" class="Basis_Date end_date nextCalOpening"
+                                onclick="Basis_Calendar(this,'[##cms.cms.date##]', 1)" data-active="0" data-cache="0"
+                                readonly="" name="tdate" required="" id="date-des-hotel" />
+                            <span></span>
+                            <label for="date-des-hotel">Check out</label>
+                            <div class="clr"></div>
+                        </div>
+                        <div class="clr"></div>
+                    </div>
+                    <div class="clr"></div>
+                </div>
+                <div class="passenger_section p-relative float-left width_25">
+                    <div class="inner-container cursor-pointer transition show_passengers"
+                        onclick="show_passengers(this)">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" class="icon-field" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z">
+                            </path>
+                        </svg>
+                        <p class="count-passengers"><span class="count"> 2
+                            </span><span> Guests </span> </p>
+                        <label>Guests</label>
+
+                        <div class="clr"></div>
+                    </div>
+                    <div class="CountPassenger room unvisible p-absolute width_100">
+                        <div class="item-CountPassenger-content p-relative">
+                            <div class="confirm"><i class="fa fa-times"></i></div>
+                            <div class="item-CountPassenger" style="margin-top: 1em;">
+                                <div class="first-part-CountPassenger">Room</div>
+                                <div class="second-part-CountPassenger">
+                                    <div class="passenger-button plus-minus-room"><span class="plus-btn">+</span></div>
+                                    <div class="passenger-button"><input type="text" name=""
+                                            class="room width_100 font_15" readonly="" value="1">
+                                    </div>
+                                    <div class="passenger-button plus-minus-room"><span class="minus-btn">-</span></div>
+                                </div>
+                                <div class="clr"></div>
+                            </div>
+                            <div class="ShowRow">
+                                <div class="contentRoom">
+                                    <div class="RoomRow color_1">Room 1</div>
+                                    <div class="item-CountPassenger">
+                                        <div class="first-part-CountPassenger">adult (+12)</div>
+                                        <div class="second-part-CountPassenger">
+                                            <div class="passenger-button plus-minus"><span class="plus-btn">+</span></div>
+                                            <div class="passenger-button"><input type="text"
+                                                    name="_root.rooms__1.adultcount" class="adult width_100 font_15"
+                                                    readonly="" value="2"></div>
+                                            <div class="passenger-button plus-minus"><span class="minus-btn">-</span></div>
+                                        </div>
+                                        <div class="clr"></div>
+                                    </div>
+                                    <div class="item-CountPassenger">
+                                        <div class="first-part-CountPassenger">child (-12)</div>
+                                        <div class="second-part-CountPassenger">
+                                            <div class="passenger-button plus-minus-ch"><span class="plus-btn">+</span></div>
+                                            <div class="passenger-button"><input type="text"
+                                                    class="child-count  width_100 font_15" readonly="" value="0"></div>
+                                            <div class="passenger-button plus-minus-ch"><span class="minus-btn">-</span></div>
+                                        </div>
+                                        <input type="hidden" value="0" class="childcountandage"
+                                            name="_root.rooms__1.childcountandage">
+                                        <div class="clr"></div>
+                                        <div class="section-select-age"></div>
+                                        <div class="clr"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class="clr"></div>
+                </div>
+                <div class="float-right width_10 text-right">
+                    <button type="submit"
+                        class="submitForm form_search-btn background-color_1 color_white cursor-pointer">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </div>
+                <div class="clr"></div>
+            </form>
+            <div class="clr"></div>
+        </div>
+        <div id="item-Tour" class="p-relative unvisible">
+            <form id="tour-form" class="form-search" method="post" action="/Tem3_Tour_Search_EN.bc">
+                <input type="hidden" name="currentdate" class="currentdate" value="" />
+                <div class="city p-relative float-left width_25">
+                    <div class="inner-container transition p-relative">
+                        <div class="input-container p-relative">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" class="icon-field"
+                                fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z">
+                                </path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            </svg>
+                            <input type="text" name="tour-search-text" id="dep-tour" onclick="city_search(this)"
+                                data-type="4" data-active="0" class="tour-search-text" required="" autocomplete="off"
+                                value="" />
+                            <label for="dep-tour">Location</label>
+
+                        </div>
+                        <input value="" class="co-id" type="hidden" name="tourname" />
+                        <span class="mini-loading p-absolute unvisible"><i class="fas fa-spinner fa-spin"></i></span>
+                        <div class="countryFlight p-absolute"></div>
+
+                    </div>
+                </div>
+                <div class="Basis_Date_Box float-left width_40">
+                    <div class="width_50 float-left result-for p-relative">
+                        <div class="input-container p-relative cursor-pointer transition">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" class="icon-field"
+                                fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z">
+                                </path>
+                            </svg>
+                            <input type="text" value="" class="Basis_Date start_date"
+                                onclick="Basis_Calendar(this,'[##cms.cms.date##]', 1)" data-active="0" data-cache="0"
+                                readonly="" name="fdate" required="" id="date-dep-tour" />
+                            <span></span>
+                            <label for="date-dep-tour">Pick up</label>
+                            <div class="clr"></div>
+                        </div>
+
+                        <div class="clr"></div>
+                    </div>
+                    <div class="width_50 float-left result-for p-relative">
+                        <div class="input-container p-relative cursor-pointer transition">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" class="icon-field"
+                                fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z">
+                                </path>
+                            </svg>
+
+                            <input type="text" value="" class="Basis_Date end_date nextCalOpening"
+                                onclick="Basis_Calendar(this,'[##cms.cms.date##]', 1)" data-active="0" data-cache="0"
+                                readonly="" name="tdate" required="" id="date-des-tour" />
+                            <span></span>
+                            <label for="date-des-tour">Drop off</label>
+                            <div class="clr"></div>
+                        </div>
+                        <div class="clr"></div>
+                    </div>
+                    <div class="clr"></div>
+                </div>
+                <div class="passenger_section p-relative float-left width_25">
+                    <div class="inner-container cursor-pointer transition show_passengers"
+                        onclick="show_passengers(this)">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" class="icon-field" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z">
+                            </path>
+                        </svg>
+                        <p class="count-passengers"><span class="count"> 2
+                            </span><span> Guests </span> </p>
+                        <label>Guests</label>
+
+                        <div class="clr"></div>
+                    </div>
+                    <div class="CountPassenger room unvisible p-absolute width_100">
+                        <div class="item-CountPassenger-content p-relative">
+                            <div class="confirm"><i class="fa fa-times"></i></div>
+                            <div class="item-CountPassenger" style="margin-top: 1em;">
+                                <div class="first-part-CountPassenger">Room</div>
+                                <div class="second-part-CountPassenger">
+                                    <div class="passenger-button plus-minus-room"><span class="plus-btn">+</span></div>
+                                    <div class="passenger-button"><input type="text" name=""
+                                            class="room width_100 font_15" readonly="" value="1">
+                                    </div>
+                                    <div class="passenger-button plus-minus-room"><span class="minus-btn">-</span></div>
+                                </div>
+                                <div class="clr"></div>
+                            </div>
+                            <div class="ShowRow">
+                                <div class="contentRoom">
+                                    <div class="RoomRow color_1">Room 1</div>
+                                    <div class="item-CountPassenger">
+                                        <div class="first-part-CountPassenger">adult (+12)</div>
+                                        <div class="second-part-CountPassenger">
+                                            <div class="passenger-button plus-minus"><span class="plus-btn">+</span></div>
+                                            <div class="passenger-button"><input type="text"
+                                                    name="_root.rooms__1.adultcount" class="adult width_100 font_15"
+                                                    readonly="" value="2"></div>
+                                            <div class="passenger-button plus-minus"><span class="minus-btn">-</span></div>
+                                        </div>
+                                        <div class="clr"></div>
+                                    </div>
+                                    <div class="item-CountPassenger">
+                                        <div class="first-part-CountPassenger">child (-12)</div>
+                                        <div class="second-part-CountPassenger">
+                                            <div class="passenger-button plus-minus-ch"><span class="plus-btn">+</span></div>
+                                            <div class="passenger-button"><input type="text"
+                                                    class="child-count  width_100 font_15" readonly="" value="0"></div>
+                                            <div class="passenger-button plus-minus-ch"><span class="minus-btn">-</span></div>
+                                        </div>
+                                        <input type="hidden" value="0" class="childcountandage"
+                                            name="_root.rooms__1.childcountandage">
+                                        <div class="clr"></div>
+                                        <div class="section-select-age"></div>
+                                        <div class="clr"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class="clr"></div>
+                </div>
+                <div class="float-right width_10 text-right">
+                    <button type="submit"
+                        class="submitForm form_search-btn background-color_1 color_white cursor-pointer">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </div>
+                <div class="clr"></div>
+            </form>
+            <div class="clr"></div>
+        </div>
+        <div id="item-Visa" class="p-relative unvisible">
+            <form id="visa-form" class="form-search" method="post" action="/Tem3_Visa_Search_EN.bc">
+                <div class="city p-relative float-left width_90">
+                    <div class="inner-container transition p-relative">
+                        <div class="input-container p-relative">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" class="icon-field"
+                                fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z">
+                                </path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            </svg>
+                            <input type="text" onclick="empty_value(this)" name="visa-country" id="dep-visa"
+                                oninput="city_search(this)" data-type="5" class="country" required="" autocomplete="off"
+                                value="Dubai - United Arab Emirates" />
+                            <label for="dep-visa">Location</label>
+
+                        </div>
+                        <input value="1002248" class="co-id" type="hidden" name="countryid" />
+                        <span class="mini-loading p-absolute unvisible"><i class="fas fa-spinner fa-spin"></i></span>
+                        <div class="countryFlight p-absolute"></div>
+                        <div class="searchList unvisible p-absolute width_100">
+                            <ul class="ul-list color_grey">
+                                <li onclick="SelectPlace(this)" data-id="1002248"><svg
+                                        xmlns="http://www.w3.org/2000/svg" width="25" height="25" class="icon-map"
+                                        fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                            d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z">
+                                        </path>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                            d="M15 11a3 3 0 11-6 0 3 3 0 016 0z">
+                                        </path>
+                                    </svg><span>Dubai -
+                                        United Arab Emirates</span></li>
+                                <li onclick="SelectPlace(this)" data-id="1002243"><svg
+                                        xmlns="http://www.w3.org/2000/svg" width="25" height="25" class="icon-map"
+                                        fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                            d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z">
+                                        </path>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                            d="M15 11a3 3 0 11-6 0 3 3 0 016 0z">
+                                        </path>
+                                    </svg><span>Oman - Muscat</span></li>
+                            </ul>
+                            <div class="clr"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="float-right width_10 text-right">
+                    <button type="submit"
+                        class="submitForm form_search-btn background-color_1 color_white cursor-pointer">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </div>
+                <div class="clr"></div>
+            </form>
+            <div class="clr"></div>
+        </div>
+
+    </div>
+</div>
+<script type="text/javascript">
+    <basis core="call" file="Client_Basis_Calendar_EN_js.inc" />
+</script>
+<script src="[##cms.cms.cdn##]/js/search.js" type="text/javascript"></script>

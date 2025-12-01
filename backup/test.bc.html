@@ -1,0 +1,549 @@
+<basis core="dbsource" source="basiscore" mid="1" name="db" lid="2" catid="154241">
+    <member name="hotel-list" type="list" link="hotel.bc" typeid="159" propertyid="77548,77547,7244" />
+</basis>
+<basis core="dbsource" source="media" lid="2" name="db" usedforid="" sourcemid="article">
+    <member name="pdf" type="list" format="pdf" />
+</basis>
+<basis core="inlinesource" name="db">
+    <member name="hotel-list-join" lefttblcol="db.hotel-list.id" righttblcol="db.pdf.Table1ID" format="join"
+        jointype="leftjoin" />
+</basis>
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+<head>
+    <title>joytrip</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="joytrip">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="joytrip">
+    <meta property="og:image" content="[##cms.cms.cdn##]/images/logo.png">
+    <meta property="og:image:width" content="100">
+    <meta property="og:image:height" content="85">
+    <meta property="og:image:secure_url" content="[##cms.cms.cdn##]/images/logo.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:alt" content="joytrip">
+    <meta name="author" content="BasisCore">
+    <meta name="enamad" content="">
+    <link rel="apple-touch-icon" sizes="57x57" href="[##cms.cms.cdn##]/images/logo.png">
+    <link rel="shortcut icon" sizes="57x57" href="[##cms.cms.cdn##]/images/logo.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="mobile-web-app-capable" content="yes">
+    <link href="[##cms.cms.cdn##]/css/joytrip-main.css" type="text/css" rel="stylesheet" />
+    <style>
+        #search .btnstyle {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <main class="dir-ltr">
+        <basis core="dbsource" source="basiscore" name="db" mid="5" lid="1" usedforid="[##cms.cms.ownerid##]">
+            <member name="info" type="view" />
+        </basis>
+        <header class="header">
+            <div class="bc-main">
+                <div class="width_50 float-left left-header">
+                    <a href="/" class="logo-container"><img src="[##cms.cms.cdn##]/images/logo.png" width="120"
+                            height="75" alt="joytrip" /></a>
+                    <div class="default-header">
+                        <nav class="font_18 search-nav">
+                            <ul class="search-nav-bar">
+                                <li class="active"><a href="/"> Home
+                                    </a></li>
+                                <li><a href="/oman-hotels">Hotel</a></li>
+                                <li><a href="/visa-list.bc?catid=154240">Visa</a></li>
+                                <li><a href="/contact"> Contact</a></li>
+                                <li><a href="/about">About</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="mobile-header unvisible">
+                        <div class="col1-mobile-header float-left">
+                            <a href="#menu" class="menu_link float-left"><span></span></a>
+                        </div>
+                        <div class="col2-mobile-header float-left p-relative col3-second-part-header"></div>
+                        <nav id="menu" class="unvisible">
+                            <div class="top-menu background-color_1">
+                                <img src="[##cms.cms.cdn##]/images/M_logo.png" alt="lachintravel" width="120"
+                                    height="75" />
+                                <div class="clr"></div>
+                            </div>
+                            <ul>
+                                <li class="Selected"><a href="/"><i class="fa fa-home"></i>Home</a>
+                                </li>
+                                <li><a href="/oman-hotels"><i class="fa fa-link"></i>Hotel</a></li>
+                                <li><a href="/visa-list.bc?catid=154240"><i class="fa fa-link"></i>Visa</a></li>
+                                <li><a href="/contact"><i class="fa fa-link"></i>Contact</a>
+                                </li>
+                                <li><a href="/about"><i class="fa fa-link"></i>About</a>
+                                </li>
+
+                            </ul>
+                        </nav>
+                        <div class="clr"></div>
+                    </div>
+                </div>
+                <div class="width_50 float-right text-right right-header">
+                    <span class="show-contact-content" onclick="sidebar_collapse(this)">
+                        <i class="fa fa-phone"></i>
+                        <svg version="1.0" fill="#000000" xmlns="http://www.w3.org/2000/svg" width="20pt" height="20pt"
+                            viewBox="0 0 512.000000 512.000000" preserveAspectRatio="xMidYMid meet">
+
+                            <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)" stroke="none">
+                                <path d="M1456 4340 c-107 -33 -185 -152 -173 -265 9 -89 61 -165 142 -208
+                    l40 -22 1735 0 1735 0 40 22 c92 49 139 127 140 228 0 102 -48 183 -138 232
+                    -30 17 -129 18 -1762 20 -952 1 -1743 -2 -1759 -7z" />
+                                <path d="M200 2809 c-90 -18 -182 -113 -196 -204 -10 -67 3 -129 39 -182 42
+                    -62 99 -101 167 -113 37 -7 843 -9 2385 -8 2110 3 2333 5 2365 19 52 24 97 65
+                    128 118 23 39 27 57 27 121 0 64 -4 82 -27 121 -31 53 -76 94 -128 118 -32 15
+                    -254 16 -2375 17 -1325 1 -2360 -2 -2385 -7z" />
+                                <path d="M2479 1266 c-222 -79 -234 -378 -19 -475 44 -20 59 -21 1246 -21
+                    1337 0 1256 -4 1332 69 57 56 77 104 77 186 -1 52 -6 81 -22 111 -31 58 -104
+                    119 -158 133 -68 17 -2407 15 -2456 -3z" />
+                            </g>
+                        </svg>
+
+                    </span>
+
+                    <div class="currency-rate font_13 p-relative">
+                        <span class="currency-loading p-absolute unvisible"><i
+                                class="fas fa-spinner fa-spin"></i></span>
+                        <div class="currency-content">
+                            <div class="currency-selected cursor-pointer border-radius" data-active="0"
+                                onclick="currency_selected(this)"><span>--Currency--</span></div>
+                            <div class="currency-list unvisible font_12 p-absolute">
+                                <ul></ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="clr"></div>
+            </div>
+            <div class="clr"></div>
+        </header>
+        <section class="content">
+            <section class="loginRegister"></section>
+            <section class="search-box-container item-container">
+                <div class="bc-main">
+                    <div class="bg-content">
+                        <div class="bg-item-1">
+                            <div class="bg-item-1-1"></div>
+                            <div class="bg-item-1-2"></div>
+                        </div>
+                        <div class="bg-item-2"></div>
+                    </div>
+
+                    <div class="search-box-title">
+                        <h1 class="title">Joy Trip</h1>
+                        <p class="sub-title font_20">Discover amzaing places </p>
+                    </div>
+                    <div id="search-box">
+                        <div class="search-box-loader-content"><span class="search-box-loader"></span></div>
+                    </div>
+
+
+                    <div class="bg-glass p-absolute"><span class="circle-one"></span><span class="circle-two"></span>
+                    </div>
+
+                </div>
+            </section>
+            <section class="item-container background-color_body services">
+                <div class="bc-main">
+                    <div class="title-container text-center">
+                        <p class="title">Joy Trip services</p>
+                        <p class="sub-title">Explore thousands of destinations around the world</p>
+                    </div>
+                    <div class="services-container">
+
+                        <div class="service-content width_80 background-color_white text-center">
+
+                            <div class="icon color_1 "><i class="flaticon-airplane-flight-in-circle-around-earth"></i>
+                            </div>
+                            <p class="title color_gray">Touring Variety</p>
+
+                        </div>
+                        <div class="service-content width_80 background-color_white text-center">
+                            <div class="icon color_1"><i class="flaticon-tourists"></i></div>
+                            <p class="title color_gray">Travel experts</p>
+
+                        </div>
+                        <div class="service-content width_80 background-color_white text-center">
+                            <div class="icon color_1"><i class="flaticon-support"></i>
+                            </div>
+                            <p class="title color_gray">Support</p>
+
+                        </div>
+                        <div class="service-content width_80 background-color_white text-center">
+                            <div class="icon color_1"><i class="flaticon-coupon"></i>
+                            </div>
+                            <p class="title color_gray">Special Offers</p>
+
+                        </div>
+                        <div class="service-content width_80 background-color_white text-center">
+                            <div class="icon color_1"><i class="flaticon-travel"></i>
+                            </div>
+                            <p class="title color_gray">Travel Tips</p>
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <basis core="list" datamembername="db.hotel-list-join">
+                <layout>
+                    <section class="item-container">
+                        <div class="bc-main">
+                            <div class="title-container text-center">
+                                <p class="title">Special destination</p>
+                                <p class="sub-title">Explore thousands of destinations around the world</p>
+                            </div>
+                            <div class="hotel-list-container">
+                                @child
+                            </div>
+                        </div>
+                    </section>
+                </layout>
+                <face filter="link is null">
+                    <div class="hotel-list-content">
+                        <article class="background-color_white width_90">
+                            <figure>
+                                <img data-src="/@db.hotel-list.type_159" class="transition lozad" width="360"
+                                    height="240" alt="@db.hotel-list.title" />
+                            </figure>
+                            <div class="p-relative">
+                                <header>
+                                    <a href="/@db.pdf.largeIMG" target="_blank" class="package color_2"><i
+                                            class="fa fa-download"></i>download
+                                        package </a>
+                                </header>
+                                <footer class="color_gray">
+                                    <h2 class="font_20 title">@db.hotel-list.title</h2>
+                                    <p class="text font_14 text-limited">@db.hotel-list.prp_7244</p>
+                                </footer>
+                            </div>
+
+                        </article>
+                    </div>
+
+
+
+                </face>
+                <face>
+                    <div class="hotel-list-content">
+                        <article class="background-color_white width_90">
+                            <figure>
+                                <img data-src="/@db.hotel-list.type_159" class="transition lozad" width="360"
+                                    height="240" alt="@db.hotel-list.title" />
+                            </figure>
+                            <div class="p-relative">
+                                <header>
+                                    <a href="/@db.pdf.largeIMG" target="_blank" class="package color_2"><i
+                                            class="fa fa-download"></i>download
+                                        package </a>
+                                </header>
+                                <footer class="color_gray">
+                                    <h2 class="font_20 title">@db.hotel-list.title</h2>
+                                    <p class="text font_14 text-limited">@db.hotel-list.prp_7244</p>
+                                </footer>
+                            </div>
+
+                        </article>
+                    </div>
+                </face>
+            </basis>
+            <section class="item-container background-color_body">
+                <div class="bc-main">
+                    <div class="adv-container">
+                        <div class="adv-conetnt p-relative">
+                            <figure>
+                                <img data-src="[##cms.cms.cdn##]/images/adv_img_1.jpg" class="lozad" width="1200"
+                                    height="300" alt="adv" />
+                            </figure>
+                        </div>
+                        <div class="adv-conetnt p-relative">
+                            <figure>
+                                <img data-src="[##cms.cms.cdn##]/images/adv_img_2.jpg" class="lozad" width="1200"
+                                    height="300" alt="adv" />
+                            </figure>
+                        </div>
+                        <div class="adv-conetnt p-relative">
+                            <figure>
+                                <img data-src="[##cms.cms.cdn##]/images/adv_img_3.jpg" class="lozad" width="1200"
+                                    height="300" alt="adv" />
+                            </figure>
+                        </div>
+                    </div>
+
+                </div>
+
+            </section>
+            <section class="item-container">
+                <div class="bc-main">
+                    <div class="hotel-container">
+                        <div class="hotel-content">
+                            <img data-src="[##cms.cms.cdn##]/images/hotel-1.png" class="lozad" width="150" height="94"
+                                alt="" />
+                        </div>
+                        <div class="hotel-content">
+                            <img data-src="[##cms.cms.cdn##]/images/hotel-2.png" class="lozad" width="150" height="94"
+                                alt="" />
+                        </div>
+                        <div class="hotel-content">
+                            <img data-src="[##cms.cms.cdn##]/images/hotel-3.png" class="lozad" width="150" height="94"
+                                alt="" />
+                        </div>
+                        <div class="hotel-content">
+                            <img data-src="[##cms.cms.cdn##]/images/hotel-4.png" class="lozad" width="150" height="101"
+                                alt="" />
+                        </div>
+                        <div class="hotel-content">
+                            <img data-src="[##cms.cms.cdn##]/images/hotel-5.png" class="lozad" width="150" height="94"
+                                alt="" />
+                        </div>
+                        <div class="hotel-content">
+                            <img data-src="[##cms.cms.cdn##]/images/hotel-6.png" class="lozad" width="150" height="94"
+                                alt="" />
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+        </section>
+        <script src="https://cdn.basiscore.net/basisfly.com/js/reservation_js_library.js" type="text/javascript">
+        </script>
+        <footer class="footer color_white">
+            <div class="bc-main">
+                <div class="footer-top background-color_1 d-flex">
+                    <div class="footer-item">
+                        <img src="[##cms.cms.cdn##]/images/logo.png" width="120" height="75" alt="joytrip" />
+                        <ul class="social-icon font_18">
+                            <li><a class="facebook" href=""><i class="far fa-facebook-f"></i></a></li>
+                            <li><a class="twitter" href=""><i class="far fa-twitter"></i></a></li>
+                            <li><a class="instagram" href=""><i class="far fa-instagram"></i></a></li>
+                            <li><a class="telegram" href=""><i class="fa fa-paper-plane"></i></a></li>
+                            <li><a class="whatsapp" href=""><i class="far fa-whatsapp"></i></a></li>
+                        </ul>
+                        <div class="clr"></div>
+                    </div>
+                    <div class="footer-item">
+                        <div class="inner float-left width_90">
+                            <p class="title font_20">useful links</p>
+                            <ul class="font_15 info">
+                                <li rel="nofollow"><a href="/hotel-list.bc?catid=54239">Hotel</a></li>
+                                <li rel="nofollow"><a href="/visa-list.bc?catid=54240">Visa</a></li>
+                                <li rel="nofollow"><a href="/contact">Contact</a></li>
+                                <li rel="nofollow"><a href="/about">About</a></li>
+                            </ul>
+                        </div>
+                        <div class="clr"></div>
+                    </div>
+                    <div class="footer-item">
+                        <div class="inner float-left width_90">
+                            <p class="title font_20">contact info</p>
+                            <ul class="font_15 info">
+                                <basis core="print" datamembername="db.info">
+                                    <face filter="prpid = 7999 and answer <> ''">
+                                        <li class="address"><span>@answer</span>
+                                            <div class="clr"></div>
+                                        </li>
+                                    </face>
+                                    <face filter="prpid = 8000">
+                                        <li class="phone"><span> @answer</span>
+                                            <div class="clr"></div>
+                                        </li>
+                                    </face>
+                                    <face filter="prpid = 8001">
+                                        <li class="mail"><span> @answer</span>
+                                            <div class="clr"></div>
+                                        </li>
+                                    </face>
+                                </basis>
+                            </ul>
+                        </div>
+                        <div class="clr"></div>
+                    </div>
+                    <div class="clr"></div>
+                </div>
+                <div class="footer-bottom">
+                    <div class="copy font_12 text-center"><a class="color_white"
+                            href="https://www.basisfly.com/Specialized-Travel-Agency-Website-Design" target="_blank">Web
+                            Design</a> & <a class="color_white" href="https://www.basisfly.com/EN-default.bc"
+                            target="_blank">Online
+                            Reservation</a>
+                        by <img src="[##cms.cms.cdn##]/images/basisfly.png" alt="basisfly" width="60" height="15" />
+                    </div>
+
+                    <div class="clr"></div>
+                </div>
+            </div>
+            <div class="clr"></div>
+            <section class="sidebar-container transition">
+                <div class="sidebar-content">
+                    <div class="sidebar-text">
+                        <div class="item">
+                            <h3 class="title font_18 color_1">OUR PROPRIETOR</h3>
+                            <img src="[##cms.cms.cdn##]/images/logo.png" width="120" height="75" alt="joytrip" />
+                            <p class="font_18 color_gray">Joy Trip</p>
+                            <basis core="print" datamembername="db.info">
+                                <face filter="prpid = 8004">
+                                    <div class="text-limited sub-text">
+                                        @answer
+                                    </div>
+                                </face>
+                            </basis>
+                            <div class="socialgroup">
+                                <ul>
+                                    <li> <a class="color_2" target="_blank" href="#"> <i class="fab fa-facebook"></i>
+                                        </a>
+                                    </li>
+                                    <li> <a class="color_2" target="_blank" href="#"> <i class="fab fa-google"></i> </a>
+                                    </li>
+                                    <li> <a class="color_2" target="_blank" href="#"> <i class="fab fa-twitter"></i>
+                                        </a>
+                                    </li>
+                                    <li> <a class="color_2" target="_blank" href="#"> <i class="fab fa-instagram"></i>
+                                        </a>
+                                    </li>
+                                    <li> <a class="color_2" target="_blank" href="#"> <i class="fab fa-pinterest"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <h3 class="title font_18 color_1">CONTACT US</h3>
+                            <div class="sidebar-inner-text">
+                                <p>Feel free to contact and<br> reach us !!</p>
+
+                                <ul>
+                                    <basis core="print" datamembername="db.info">
+                                        <face filter="prpid = 7999 and answer <> ''">
+                                            <li>
+                                                <i class="fa fa-map-marker color_1"></i>
+                                                @answer
+                                            </li>
+                                        </face>
+                                        <face filter="prpid = 8000">
+                                            <li>
+                                                <a href="tel:@answer">
+                                                    <i class="fa fa-phone color_1"></i>
+                                                    @answer
+                                                </a>
+                                            </li>
+                                        </face>
+                                        <face filter="prpid = 8001">
+                                            <li>
+                                                <a href="mailtop: @answer">
+                                                    <i class="fa fa-envelope color_1"></i>
+                                                    @answer
+                                                </a>
+                                            </li>
+                                        </face>
+                                    </basis>
+
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <span class="sidebar-close" onclick="sidebar_close(this)">
+                        <i class="fas fa-times color_1"></i>
+                    </span>
+                </div>
+            </section>
+            <section class="bg-sidebar unvisible" onclick="sidebar_close(this)"></section>
+            <section class="contact-link">
+                <span class="contact-link-icon background-color_1">
+                    <i class="far fa-comments color_white"></i>
+                    <div class="ripple p-absolute"></div>
+                </span>
+                <div class="contact-link-text text-center
+            background-color_white">
+                    <p class="font_14 color_1 font-weight">Joy Trip</p>
+                    <p class="text color_gray font_13">Toll Free & 24/7 Available</p>
+                    <a class="icon icon-1" href="https://api.whatsapp.com/send?phone=09354277310"><i
+                            class="far fa-whatsapp"></i></a>
+                    <a class="icon icon-2" href="https://t.me/09354277310"><i class="fa fa-paper-plane"></i></a>
+                </div>
+            </section>
+        </footer>
+        <script src="https://cdn.basiscore.net/basisfly.com/js/reservation_menu-responsive.js"
+            type="text/javascript"></script>
+        <script type="text/javascript">
+            $(document).ready(function () { $('#search-box').load('/testSahar.bc'); });
+            //<!---------------JS MENU RESPONSIVE--------------->//
+            var menu = new MmenuLight(document.querySelector('#menu'), 'all');
+            var navigator = menu.navigation({ selectedClass: 'Selected', slidingSubmenus: true, theme: 'light', title: '' });
+            var drawer = menu.offcanvas({ position: 'left' }); document.querySelector('a[href="#menu"]').addEventListener('click', evnt => { evnt.preventDefault(); drawer.open(); });
+            //<!---------------JS LOGIN--------------->//
+            // $(document).ready(function (e) { if ($(window).width() <= 1200) { $(".loginRegister").load("/M_Login_Register_en.bc", function (responseTxt, statusTxt, xhr) {if (statusTxt == "success") {if($(".search-box-container").length){  $(".login-form-prev").find("form").append(`<input type="hidden" name="redirect_homepage" value="1"/>`);}}}); $(".col2-mobile-header").load('/M_Login_Information_en.bc') 
+            // } else {if($(".search-box-container").length){$(".Login_Information").load("/Client_Login_Information_En_ver.2.bc?redirect=1")}else{$(".Login_Information").load("/Client_Login_Information_En_ver.2.bc")} } });
+
+            //<!---------------START JS SIDE BAR--------------->//
+            function sidebar_collapse(element) { $(".sidebar-container").addClass("open"); $(".bg-sidebar").removeClass("unvisible") }
+            function sidebar_close(element) { $(".sidebar-container").removeClass("open"); $(".bg-sidebar").addClass("unvisible") }
+            /*------------------REFRESH CAPTCHA-----------------------*/
+            function refresh_captcha(element, event) { $(element).closest("form").find(".load-captcha").load("/Client_Captcha.bc"); }
+            /*------------------SUBMIT FORM-----------------------*/
+            $(".form-content").submit(function (e) { var self = $(this); self.closest(".bc-main").find(".Loading_Form").show(); e.preventDefault(); $.ajax({ url: self.attr("action"), type: self.attr("method"), data: $(self).serialize(), success: function (response) { self.closest(".bc-main").find(".Loading_Form").hide(); self.closest(".bc-main").find(".Message-Form").empty().show().html(response); }, }); });
+            //<!---------------JS HOTEL LIST--------------->//
+            $(".text-limited").each(function () { if ($(this).text().length > 200) { $(this).text($(this).text().substr(0, 200) + '...') } })
+            /*------------------CURRENCY-----------------------*/
+            function currency_selected(element) {
+                if (!document.querySelector(".contain-currency")) {
+                    if (!document.querySelector(".contain-currency-show")) {
+                        if (element.closest(".bc-main").querySelector(".currency-selected").getAttribute("data-active") == 0) {
+                            element.closest(".bc-main").querySelector(".currency-loading").classList.toggle("unvisible"); fetch('/Client_Currency_Rate.bc').then(response => response.text()).then(text => {
+                                const data_currency = JSON.parse(text.replace(/\'/g, '"')); for (let i = 0; i < data_currency.rate.length; i++) {
+                                    $(".currency-list ul").append(`<li data-cost=${data_currency.rate[i].rate_cost} data-floatdigit=${data_currency.floatdigit} onclick="select_currency(this)">${data_currency.rate[i].rate_unit}</li>`)
+                                }
+                                element.closest(".bc-main").querySelector(".currency-loading").classList.toggle("unvisible"); element.closest(".bc-main").querySelector(".currency-selected").setAttribute("data-active", 1); element.closest(".bc-main").querySelector(".currency-list").classList.toggle("unvisible");
+                            }).catch(error => console.error(error))
+                        } else { element.closest(".bc-main").querySelector(".currency-list").classList.toggle("unvisible"); }
+                    }
+                }
+            }
+            function select_currency(element) { element.closest(".bc-main").querySelector(".currency-list").classList.toggle("unvisible"); element.closest(".bc-main").querySelector(".currency-selected").innerText = element.innerText; localStorage_setCurrency(element.innerText, element.getAttribute("data-cost"), element.getAttribute("data-floatdigit")); }
+            function localStorage_setCurrency(currency_unit, currency_cost, floatdigit) { let currencyObject = { 'currency_unit': currency_unit, 'currency_cost': currency_cost, 'floatdigit': floatdigit, 'time': new Date().getTime(), 'expire': 1200000, }; localStorage.setItem('currencyObject', JSON.stringify(currencyObject)); localStorage_getCurrency(); }
+            function localStorage_getCurrency() { let getCurrencyObject = localStorage.getItem('currencyObject'); let jsonCurrency = JSON.parse(getCurrencyObject); if (jsonCurrency) { document.querySelector(".currency-selected").innerText = jsonCurrency.currency_unit; var timer = setInterval(function () { if (new Date().getTime() - jsonCurrency.time >= jsonCurrency.expire) { localStorage.removeItem('currencyObject'); document.querySelector(".currency-selected").innerText = '--Currency--'; document.querySelector(".currency-selected").setAttribute("data-active", 0); clearInterval(timer); console.log('localStorage has ex pired'); } }, 1000) } }
+            $(function () { localStorage_getCurrency(); });
+            $(function () { if (document.querySelector(".contain-currency-show")) { document.querySelector(".currency-selected").setAttribute("onclick", ""); } })
+            $(document).on('click', function (event) { if (!$(event.target).closest('.currency-selected,.currency-list').length) { document.querySelector(".currency-list").classList.add("unvisible"); } })
+            //----------------JS HOTEL VIEW----------------//
+            $(function () { if ($(".side-bar").offset() != undefined) { let offset_top = parseInt($(".side-bar").offset().top) - 135; $(".side-bar-container").css('top', offset_top + 'px') } })
+            function link_title(element, event, title) {
+                if (title == 'facilities') {
+                    document.getElementById("Most popular facilities").scrollIntoView({ behavior: "smooth" });
+                } else if (title == 'nearby') {
+                    document.getElementById("What's nearby").scrollIntoView({ behavior: "smooth" });
+                } else if (title == 'cafes') {
+                    document.getElementById(" Restaurants & cafes").scrollIntoView({ behavior: "smooth" });
+                } else if (title == 'attractions') {
+                    document.getElementById(" Top attractions").scrollIntoView({ behavior: "smooth" });
+                } else if (title == 'natural') {
+                    document.getElementById(" Natural Beauty").scrollIntoView({ behavior: "smooth" });
+                } else if (title == 'airports') { document.getElementById("Closest Airports").scrollIntoView({ behavior: "smooth" }); } else if (title == 'room') { document.getElementById("Room types").scrollIntoView({ behavior: "smooth" }); }
+            }
+
+
+
+        </script>
+        <basis core="call" file="Client_Basis_Calendar_EN.inc" />
+    </main>
+    <link href="https://cdn.basiscore.net/basisfly.com/css/reservation_tem_calendar_en.css" type="text/css"
+        rel="stylesheet" />
+    <script src="https://cdn.basiscore.net/basisfly.com/js/reservation_date_pickerUi.js" type="text/javascript">
+    </script>
+    <script src="https://cdn.basiscore.net/basisfly.com/js/reservation_date_picker.js" type="text/javascript"></script>
+    <script src="https://cdn.basiscore.net/basisfly.com/js/reservation_main_date_picker.js" type="text/javascript">
+    </script>
+    <script src="https://cdn.basiscore.net/basisfly.com/js/reservation_lozad.min.js" type="text/javascript"></script>
+    <script src="[##cms.cms.cdn##]/js/owl_carousel.js" type="text/javascript"></script>
+</body>
+
+</html>

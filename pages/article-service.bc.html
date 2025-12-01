@@ -1,0 +1,1404 @@
+<basis core="dbsource" source="basiscore" name="db" mid="1" lid="2" usedforid="[##cms.query.id##]">
+    <member name="view" type="view" />
+    <member name="related-tour" type="list" blgid="221"
+        propertyid="10000504,8077,8181,8076,77191,77192,77193,77267,77330" typeid="159" link="tour-en.bc" perpage="20" />
+    <member name="related-article" type="list" blgid="222" link="article-en.bc" propertyid="7244,7248,7249,7227,77320"
+        perpage="20" typeid="159" />
+    <member name="data" type="view" request="rdfa" />
+</basis>
+<basis core="dbsource" source="media" lid="2" name="db" usedforid="[##cms.query.id##]" sourcemid="article">
+    <member type="list" name="gallery" format="4" order="ord"></member>
+</basis>
+<basis core="dbsource" source="basiscore" name="db" lid="2" request="seo">
+    <member name="list" type="list" request="cat" id="[##cms.query.id##]"></member>
+</basis>
+<basis core="dbsource" source="userbehavior" name="db" usedforid="[##cms.query.id##]">
+    <member name="comment" type="list" order="ord" request="listcomment" />
+</basis>
+<basis core="dbsource" source="trust_login" name="captcha" grade="simple">
+  <member name="OpinionCode" type="scalar" request="captcha" />
+</basis>
+<basis core="tracking" name="tracking" source="Monitoring" collectionname="activity" dbname="tracking" addcookie="true" />
+<basis core="cookie" name="trackingid" value="[##tracking.inserted.id|(0)##]" />
+<basis core="dbsource" source="trust_login8" mid="24" name="db" lid="1" rkey="[##cms.cookie.rkey##]">
+    <member name="userid" type="scalar" request="userid" preview="" />
+</basis>
+<basis core="external.fly.ws" source="cmsDbService2" procedurename="dbsource" name="db">
+    <member name="check_service" method="site" query='{
+  	 "name": "db",
+  	 "mid": "20",
+  	 "member": [{
+   		 "type" : "list",
+   		 "name" : "q",
+   		 "request" : "check_service_article",
+   		 "dmnid" : [##cms.cms.domainid##],
+   		 "id":"[##cms.query.id##]"
+   	 }]}' preview="" />
+</basis>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>[##cms.seo.title|db.list.title##]</title>
+    <meta name="description" content="[##cms.seo.description|db.list.description##]" />
+    <meta name="author" content="BasisCore">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+ <meta property="og:type" content="website">
+    <meta property="og:title" content="[##cms.seo.description|db.list.description##]">
+    <meta property="og:image" content="[##cms.cms.cdn##]/images/logo.png">
+    <meta property="og:image:width" content="100">
+    <meta property="og:image:height" content="85">
+    <meta property="og:image:secure_url" content="[##cms.cms.cdn##]/images/logo.png">
+    <meta property="og:image:type" content="image/png">
+    <!----CSS LIBRARY---->
+    <link href="/css/Article_Landing_Tem_EN_Style.css" type="text/css" rel="stylesheet" />
+    <link href="https://cdn.basiscore.net/basisfly.com/css/reservation_font_awesome.css" type="text/css" rel="stylesheet" />
+    <link href="https://cdn.basiscore.net/basisfly.com/css/reservation_tem_calendar_en.css" type="text/css" rel="stylesheet" />
+    <!----CSS CUSTOMIZE---->
+    <link href="/css/style_tem_en.css" type="text/css" rel="stylesheet" />
+    <!----JS LIBRARY---->
+    <script src="https://cdn.basiscore.net/basisfly.com/js/reservation_js_library.js" type="text/javascript"></script>
+    </style>
+</head>
+<body>
+    <div class="opinionResult-Box">
+        <div class="opinionResult">
+            <a class="fa"></a>
+            <p class="OpinionResult-text" style="text-align:center"></p>
+        </div>
+    </div>
+    <main>
+        <div class="loginRegister"></div>
+        <basis core="call" file="header-en.inc"></basis>
+          <section class="content">
+            <div class="items-container">
+                <div class="bc-main">
+                    <div class="inner-article-show">
+                        <header class="header-art-desc wide">
+                            <div class="top-info-ar">
+                                <basis core="print" datamembername="db.view">
+                                    <face filter="typeid=150">
+                                        <h1 itemprop="@vocabulary">@text</h1>
+                                    </face>
+                                </basis>
+                                <div class="date-write-box">
+                                    <basis core="print" datamembername="db.view">
+                                        <face filter="prpid=7248">
+                                            <span><i class="fas fa-user-circle"></i> writer : @answer</span>
+                                        </face>
+                                        <face filter="prpid=7249">
+                                            <span><i class="fa fa-calendar-alt"></i> @answer</span>
+                                        </face>
+                                    </basis>
+                                </div>
+                            </div>
+                            <div class="clr"></div>
+                        </header>
+                    <div class="show-article">
+                       <basis core="group" name="view-search-box" if="'[##db.check_service.result##]'='1'">
+                          <div class="service-list">
+                            <div class="article-search-box">
+                                <form action="" method="post" class="frm formservice" id="serviceSearch">
+                                    <input type="hidden" value="0" name="select-age" class="select-age-value"/>
+                                    <input type="hidden" value="[##cms.query.id##]" name="basiscoreid" class="basiscoreid"/>
+                                    <input type="hidden" value="[##db.userid.userid##]" name="userid" class="userid"/>
+                                    <input type="hidden" value="2" name="lid"/>
+                                    <div class="Basis_Date_Box">
+                                        <div class="city date-city">
+                                            <div class="inner-city">
+                                                <label class="label"><i class="fas fa-calendar-alt"></i></label>
+                                                <input type="text" value="" class="font_11 width_100 Basis_Date start_date color_3 p-absolute" onclick="Basis_Calendar(this,'[##cms.cms.date##]', 1)" data-active="0" data-cache="0" readonly="" name="fdate" required="" />
+                                            </div>
+                                        </div>
+                                        <div class="city date-city" style="display: none;"><div class="inner-city"><input type="text" value="" class="Basis_Date end_date" data-active="0" data-cache="0" disabled /></div></div>
+                                          <div class="clr"></div>
+                                      </div>
+                                      <div class="city pass-box">
+                                        <div class="inner-city">
+                                        <label class="label"><i class="fas fa-user"></i></label>
+                                        <input type="text" placeholder="adult:1" readonly  class="hotel-inputF hotel-input">
+                                        <span class="count-adult"></span> <span class="count-child"></span>
+                                        <div class="HotelPassengers">
+                                          <div class="countRoom">
+                                            <div class="contentRooms">
+                                              <div class="itemlable2">
+                                                <label> <span class="notshow">adult</span> </label>
+                                                <ul class="button-click">
+                                                  <li><a class="button secondary"><span class="hide">+</span></a></li>
+                                                  <li><a class="button secondary"><span class="hide">-</span></a></li>
+                                                </ul>
+                                                <input type="text" class="cat_textbox adultcount" name="adult" maxlength="4000" value="1">
+                                              </div>
+                                              <div class="itemlable2">
+                                                <label> <span class="notshow">child</span> </label>
+                                                <input type="hidden" value="0" class="childcountinput" name="child">
+                                                <ul class="button-click-child">
+                                                  <li><a class="button secondary"><span class="hide">+</span></a></li>
+                                                  <li><a class="button secondary"><span  class="hide">-</span></a></li>
+                                                </ul>
+                                                <input type="text" class="cat_textbox chcount" name="chcount" maxlength="4000" value="0">
+                                              </div>
+                                              <div class="childDropdowns"></div>
+                                            </div>
+                                          </div>
+                                          <div class="CloseHotelPassengers close-hotel-psg">confirm</div>
+                                        </div>
+                                        </div>
+                                      </div>
+                                      <section class="frm-submit-btn">
+                                        <button type="submit" class="search-service hvr-outline-out"><i class="fa fa-search"></i></button>
+                                      </section>
+                                      <div class="clr"></div>
+                                      <p class="alert-text"></p>
+                                </form>
+                              </div>
+                            <div class="contain-currency">
+                                <div class="clr"></div>
+                                <div id="content" class="font_14">
+                                    <section class="row-list-result">
+                                        <div class="wating-search">
+                                            <div id="ballsWaveG">
+                                                <div id="ballsWaveG_1" class="ballsWaveG"></div>
+                                                <div id="ballsWaveG_2" class="ballsWaveG"></div>
+                                                <div id="ballsWaveG_3" class="ballsWaveG"></div>
+                                                <div id="ballsWaveG_4" class="ballsWaveG"></div>
+                                                <div id="ballsWaveG_5" class="ballsWaveG"></div>
+                                                <div id="ballsWaveG_6" class="ballsWaveG"></div>
+                                                <div id="ballsWaveG_7" class="ballsWaveG"></div>
+                                                <div id="ballsWaveG_8" class="ballsWaveG"></div>
+                                            </div>
+                                        </div>
+                                        <div id="app" class="unvisible"></div>
+                                    </section>
+                                </div>
+                            </div>
+                          </div>
+                        </basis>
+                        <div class="article-gallery">
+                            <basis core="print" datamembername="db.gallery">
+                                <face>
+                                    <img src="@largeIMG" alt="image-gallery" />
+                                </face>
+                            </basis>
+                        </div>
+                        <section class="article-description-main text-main shadow-art-details justify-align">
+                            <basis core="print" datamembername="db.data">
+                                <face>
+                                    <div class="body-art-desc wide" itemprop="@vocabulary" itemscope="" itemtype="@link">
+                                </face>
+                            </basis>
+                            <basis core="print" datamembername="db.view">
+                                <face filter="typeid not in(159,150,160,161,162) and prpid not in (7249,7248)"
+                                    replace="true">
+                                    <h2  itemprop="@vocabulary" id="@RowNumber"> @text </h2>
+                                    <p itemprop="@vocabulary"> @largetext </p>
+                                </face>
+                                <replace tagname="img"><img class="lozad replace-img replace-image" data-src="/@val2" alt="@val3"
+                                     align="@val4"   ></replace>
+                                <replace tagname="text"><a href="@val3" target="_blank"
+                                        style="color:@val4;font-size:@val5;font-weight:@val6;font-style:@val7">@val2</a>
+                                </replace>
+                                <replace tagname="link"><a href="@val3" target="_blank" style="color:@val4;">@val2</a>
+                                </replace>
+                                <replace tagname="bold"><b>@val2</b></replace>
+                                <replace tagname="border">
+                                    <p style="border:@val2 @val3 @val4;">@val5</p>
+                                </replace>
+                            </basis>
+                          </div>
+                        </section>
+                        <div class="clr"></div>
+                        <section class="article-comment-main wide">
+                            <div class="tlt-art wide">
+                                <h2 class="sub-tlt-art line-tlt">Leave a Reply </h2>
+                            </div>
+                            <div class="comment-art-inner wide shadow-art-details">
+                                <div class="info_submit_comment">
+                                    <div id="OpinioUser-box">
+                                      <form id="opinionForm" method="post" action="/Tem1_OpinionAction_EN.bc">
+                                        <div><input name="Username" placeholder="First name & Last name" type="text" required></div>
+                                        <div><input name="_root.Phone" placeholder="Mobile" type="text"></div>
+                                        <div><input name="_root.Email" placeholder="Email" type="text"></div>
+                                        <div><_textarea name="OpinionMessage" placeholder="Comments and suggestions" required></_textarea></div>
+                                        <div>
+                                          <div class="SecurityCodeRight">
+                                            <input name="Captcha" placeholder="Security code" type="text" required></div>
+                                          <div class="SecurityCodeLeft">
+                                            <span class="fa"></span>
+                                            <a><img src="[##cms.cms.cdn##]/[##captcha.OpinionCode.captcha##]" width="70" height="31" />
+                                              <input id="Captchaid" name="Captchaid" value="[##captcha.OpinionCode.captcha##]"
+                                                type="hidden" /></a>
+                                          </div>
+                                          <div class="clr"></div>
+                                        </div>
+                                        <div><input name="productid" value="[##cms.query.id##]" type="hidden"><input name="mid" value="1" type="hidden"></div>
+                                        <div><input name="OpinionSubmit" id="OpinionSubmit" value="Submit" type="submit"></div>
+                                        <div id="ResultOpinion">
+                                        </div>
+                                      </form>
+                                    </div>
+                                  </div>
+                            </div>
+                            <div class="clr"></div>
+                        </section>
+
+                        <section class="article-comment-main wide">
+                            <div class="tlt-art wide">
+                                <h2 class="sub-tlt-art line-tlt">User comments</h2>
+                            </div>
+                            <div class="comment-art-inner wide shadow-art-details">
+                                <div class="info_comment">
+                                    <basis core="tree" datamembername="db.comment" idcol="id" parentidcol="parentid" nullvalue="0">
+                                      <layout>
+                                        <div class="user-opinion-txt-box">@Child</div>
+                                      </layout>
+                                      <face level="1">
+                                        <div class="opinionRow">
+                                          <div class="user-opinion-txt">
+                                            <span class="fa userIcon"></span>
+                                            <span class="username-opinion">User : @username</span>
+                                            <p>@comment</p>
+                                          </div>
+                                          <div class="replyCommentTxt">@Child</div>
+                                          <div class="replyComment"><a>Answer to</a></div>
+                                          <div class="replyCommentForm">
+                                            <form method="post" action="Tem1_ReplyComment_EN.bc" id="ReplyComment">
+                                              <_textarea placeholder="Type your answer ..." name="ReplyComment" required></_textarea>
+                                              <input type="hidden" name="parentid" value="@id">
+                                              <input type="hidden" name="replyProductid" value="[##cms.query.id##]">
+                                              <input name="mid" value="1" type="hidden">
+                                              <input type="submit" value="Submit">
+                                            </form>
+                                          </div>
+                                        </div>
+                                      </face>
+                                      <face level="2">
+                                        <div><span class="fa fa-reply"></span>@comment</div>
+                                      </face>
+                                    </basis>
+                                  </div>
+                            </div>
+                            <div class="clr"></div>
+                        </section>
+                    </div>
+                    <div class="clr"></div>
+                    <footer class="footer-art-desc wide">
+                        <div class="social-art-footer left-align wide">
+                            <ul>
+                                <li><a id="share-whatsapp" href="/"><i class="fab fa-whatsapp"></i></a></li>
+                                <li><a id="share-telegram" href="/"><i class="fab fa-telegram-plane"></i></a></li>
+                                <li><a id="share-email" href="#"><i class="fa fa-envelope"></i></a></li>
+                                <li><a id="share-facebook" href="/"><i class="fab fa-facebook-f"></i></a></li>
+                                <li><a id="share-twitter" href="/"><i class="fab fa-twitter"></i></a></li>
+                            </ul>
+                        </div>
+                        <div class="clr"></div>
+                       </footer>
+                       <div class="clr"></div>
+                   </div>
+                </div>
+                <div class="clr"></div>
+            </div>
+        </section>
+        <basis core="call" file="footer-en.inc"></basis>
+    </main>
+    <basis core="call" file="Client_Basis_Calendar_EN.inc" />
+    <script type="text/javascript">
+        <basis core = "call" file = "Client_Basis_Calendar_EN_js.inc"/>
+    </script>
+    <script src="https://cdn.basiscore.net/basisfly.com/js/reservation_lozad.min.js" type="text/javascript"></script>
+    <script src="[##cms.cms.cdn##]/js/owl_carousel.js" type="text/javascript"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+        const observer = lozad(); // lazy loads
+        observer.observe();
+        var currentUrl = window.location.href;
+        $("#share-facebook").attr("href", "https://www.facebook.com/sharer/sharer.php?u=" + currentUrl);
+        $("#share-whatsapp").attr("href", "whatsapp://send?text=" + currentUrl);
+        $("#share-twitter").attr("href", "https://twitter.com/home?status=" + currentUrl);
+        $("#share-email").attr("href", "mailto:info@example.com?&subject=&body=" + currentUrl);
+        $("#share-telegram").attr("href", "https://telegram.me/share/url?url=" + currentUrl + "&text=");
+    });
+
+        //<!---------------------------JS COMMENT--------------------------->
+        $(function () {
+            $("#opinionForm").on("submit", function (event) {
+                event.preventDefault();
+                $.ajax({
+                    url: $(this).attr("action"),
+                    type: $(this).attr("method"),
+                    data: $(this).serialize(),
+                    success: function (response) {
+                        $(".SecurityCodeLeft a").load("/Client_Captcha_Grade.bc")
+                        $(".OpinionResult-text").empty().html(response);
+                        $(".opinionResult-Box,.opinionResult").fadeIn()
+                    }
+                });
+            });
+            $("#ReplyComment").on("submit", function (event) {
+                event.preventDefault();
+                $.ajax({
+                    url: $(this).attr("action"),
+                    type: $(this).attr("method"),
+                    data: $(this).serialize(),
+                    success: function (response) {
+                        $(".OpinionResult-text").empty().html(response);
+                        $(".opinionResult-Box,.opinionResult").fadeIn()
+                    }
+                });
+            });
+        });
+        $(".SecurityCodeLeft span").click(function () {
+            $(".SecurityCodeLeft a").load("/Client_Captcha_Grade.bc");
+        })
+        $(".opinionResult a").click(function () {
+            $(".opinionResult-Box,.opinionResult").fadeOut();
+        })
+        $(".replyComment").click(function () {
+            $(this).closest(".opinionRow").find(".replyCommentForm").slideToggle("speed")
+        })
+        
+      //<!---------------------------JS COMMENT--------------------------->
+      $(".article-gallery").owlCarousel({autoPlay: 4000,items: 1, loop: true, itemsDesktop: [1199, 1],itemsDesktopSmall: [979, 1],itemsTablet: [768, 1],itemsTablet: [602, 1],itemsMobile: [479, 1],navigation: true,navigationText: ['<span class="fa fa-angle-left"></span>', '<span class="fa fa-angle-right"></span>']});
+    </script>
+    <script type="text/javascript">
+     //<!---------------------------SEARCH BOX--------------------------->
+     function openNextCal(e) {
+        $("#serviceSearch").find('.nextCalOpening').trigger("onclick");
+ };
+$(".formservice").each(function () {
+    $(this).submit(function (event) {
+        event.preventDefault();
+        var select_age = "";
+        $(this).find(".createChildDropdown").each(function (index, element) {
+            select_age = select_age + $(this).find("select").val() + ',' ;
+        });
+        if(select_age !== ''){
+            $(this).find(".select-age-value").val(select_age)
+            var val_1 = $(this).find(".select-age-value").val()
+            var val_2 = val_1.replace(/,(?=[^,]*$)/, '')
+            $(this).find(".select-age-value").val(val_2)
+        }
+        var ad = $(this).find(".adultcount").val();
+        var chf = $(".childcount").val();
+        var chad = parseInt(ad) + parseInt(chf);
+        var inf = 0
+        var valueAdded = 1;
+        $(".select-age").each(function () {
+            var age = parseInt($(this).val())
+            if (age <= 2) {
+                inf += valueAdded;
+            }
+        });
+        if (inf > ad) {
+            event.preventDefault();
+            $(".alert-text").html("Choose only one baby per adult!")
+        }
+        if (chad > 10) {
+            event.preventDefault();
+            $(".alert-text").html("The total number of adults and children should be less than 10!")
+        }
+        if (ad < 1) {
+            event.preventDefault();
+            $(".alert-text").html("Choose at least one adult!")
+        }
+        $(this).find(
+            "input[name=fdate],input[name=tdate],input[type=text].FCD1 ,input[type=text].FCD2,input[type=text].FCD,input[type=hidden].co-id"
+        ).each(function () {
+            if ($(this).val() == '' && !$(this).is(':disabled')) {
+                event.preventDefault();
+                $(this).after('<span class="notification p-absolute">*</span>')
+                $(this).closest(".date-city").find(".selected-day").empty()
+                $(this).closest(".date-city").find(".selected-month").empty()
+                $(this).closest(".date-city").addClass("input-alarm")
+            } else {
+                $('.wating-search').show()
+                onloadFunc()
+                $(this).closest("div").find(".notification").remove()
+                $(this).closest(".date-city").removeClass("input-alarm")
+                fetch("/Client_Service_Json_test.bc", {
+                        method: "POST",
+                        body: $(this).closest("form").serialize(),
+                    })
+                    .then(response => response.text())
+                    .then((text) => {
+                let Maindata = JSON.parse(text.replace(/\'/g, '"'))
+                let indents = [];
+                if (Maindata[0] !== undefined) {
+                    if (Maindata[0].service !== undefined) {
+                    let service_items = Maindata[0].service
+                    for (let i = 0; i < service_items.length; i++) {
+                      indents.push(service_items[i])
+                    }
+                }
+                if (Maindata[0].transfer !== undefined) {
+                    let transfer_items = Maindata[0].transfer
+                    for (let j = 0; j < transfer_items.length; j++) {
+                      indents.push(transfer_items[j])
+                    }
+                }
+
+                if (indents !== undefined) {
+                  indents.sort((a, b) => a.total - b.total);
+                }
+                }
+
+                $('.wating-search').hide()
+                $('#app').show()
+                load_data(indents)
+            })
+
+            }
+        })
+    })
+});
+
+    $(document).ready(function () {
+        $(".close-hotel-psg").click(function () {
+            $(".HotelPassengers").removeClass("block");
+        });
+        //   $('.selected:not(:first)').addClass('inactive');
+        $('.selected').click(function () {
+            var t = $(this).attr('id');
+            if ($(this).hasClass('inactive')) {
+                $('.selected').addClass('inactive');
+                $(this).removeClass('inactive');
+            }
+        });
+    });
+
+$(".serviceSearch").each(function () {
+    var m = $(this).find(".childcountandage").val()
+    var sp = m.split(",");
+    $(this).find(".numchEdit").val(sp[0])
+    $(this).find(".count-child").text(' child: ' + sp[0])
+
+    if (sp[0] > 0) {
+        for (var i = 1; i < sp.length; i++) {
+            $(this).find(".childDropdowns").append('<div class="createChildDropdown"><label for="select-age-1">child age ' + i + '</label><select><option value="' + sp[i] + '">' + sp[i] + ' years old</option></select></div>');
+        }
+        $(this).find(".childcountinput").val('' + sp[0] + ',')
+    } else {
+        $(this).find(".childcountinput").val(sp[0])
+    }
+});
+
+$(".content-form").each(function () {
+    var m = $(this).closest(".content-search").find(".roomEdit").val();
+    var n = $(this).closest(".content-search").find(".adCountEdit").val()
+    var x = $(this).closest(".content-search").find(".chCountEdit").val()
+    var sp = n.split(",");
+    var sp2 = x.split("*")
+    var ad = 0;
+    var sum = 0;
+    for (var y = 0; y < sp.length; y++) {
+        var adultcount = parseInt(sp[y])
+        ad += adultcount;
+    }
+    sum = parseInt(ad)
+    $(this).closest(".content-search").find(".count-adultRoom").text(' adult: ' + sum)
+
+    var ch = 0;
+    var sum2 = 0;
+    for (var z = 0; z < sp2.length; z++) {
+        var q = sp2[z]
+        var p = q.split(",")
+        var childcount = parseInt(p[0])
+        ch += childcount;
+
+    }
+    sum2 = parseInt(ch)
+    $(this).closest(".content-search").find(".count-childRoom").text(' child: ' + sum2)
+
+    $(this).find(".countRoom").empty()
+    for (i = 1; i <= m; i++) {
+        var childage = ""
+        var q = sp2[i - 1]
+        var p = q.split(",")
+        var s = p.length
+        if (p[0] > 0) {
+            var age = ""
+            var chage = ""
+            for (var j = 1; j < s; j++) {
+                age = age + '<div class="age-selection"><div class="label">child age ' + j + '</div><select  class="select-age"><option value="' + p[j] + '">' + p[j] + '</option></select><div class="clr"></div></div>'
+                chage = chage + p[j] + ','
+            }
+            chage = chage.slice(0, -1);
+            childage = childage + p[0] + ',' + chage
+            $(this).find(".countRoom").append('<div class="contentRooms"><div class="numberOfRooms">room' + i + '</div><div class="itemlable2"><label> <span class="notshow">adult</span> </label><ul class=""><li><a class="button secondary"><span class="hide">+</span></a></li><li><a class="button secondary"><span class="hide">-</span></a></li></ul><input type="text" class="cat_textbox adultcount" name="_root.rooms__' + i + '.adultcount" maxlength="4000" value="' + sp[i - 1] + '"> <div class="clr"></div></div><div class="itemlable2"> <label> <span class="notshow">child</span> </label><ul class=""><li><a class="button secondary"><span class="hide">+</span></a></li><li><a class="button secondary"><span class="hide">-</span></a></li><div class="clr"></div></ul><input type="text" class="cat_textbox chcount"  maxlength="4000" value="' + p[0] + '"></div><div class="clr"></div><div class="childDropdowns">' + age + '</div><input type="hidden" name="_root.rooms__' + i + '.childcountandage" class="childcountandage" value="' + childage + '" /></div></div>')
+
+        } else {
+            $(this).find(".countRoom").append('<div class="contentRooms"><div class="numberOfRooms">room' + i + '</div><div class="itemlable2"><label> <span class="notshow">adult</span> </label><ul class=""><li><a class="button secondary"><span class="hide">+</span></a></li><li><a class="button secondary"><span class="hide">-</span></a></li></ul><input type="text" class="cat_textbox adultcount" name="_root.rooms__' + i + '.adultcount" maxlength="4000" value="' + sp[i - 1] + '"> <div class="clr"></div></div><div class="itemlable2"> <label> <span class="notshow">child</span> </label><ul class=""><li><a class="button secondary"><span class="hide">+</span></a></li><li><a class="button secondary"><span class="hide">-</span></a></li><div class="clr"></div></ul><input type="text" class="cat_textbox chcount"  maxlength="4000" value="' + p[0] + '"></div><div class="clr"></div><div class="childDropdowns"></div><input type="hidden" name="_root.rooms__' + i + '.childcountandage" class="childcountandage" value="0" /></div></div>')
+        }
+    }
+});
+
+function increaseAdult(a) {
+    var button = $(a);
+    var oldVal = parseInt(button.closest("ul").next().val());
+    var newVal = (button.text() == "+") ? oldVal + 1 : (oldVal > 0) ? oldVal - 1 : 0;
+    if (newVal >= 10) return;
+    button.closest("ul").next().val(newVal);
+    SumAdult(a)
+}
+
+function decreaseAdult(a) {
+    var button = $(a);
+    var oldVal = parseInt(button.closest("ul").next().val());
+    var newVal = (button.text() == "+") ? oldVal + 1 : (oldVal > 0) ? oldVal - 1 : 0;
+    if (newVal < 1) return;
+    button.closest("ul").next().val(newVal);
+    SumAdult(a)
+}
+
+function SumAdult(a) {
+    var ad = 0;
+    var sum = 0;
+    $(a).closest("form").find(".countRoomHT").find(".contentRooms").each(function () {
+        var adultcount = parseInt($(this).find(".adultcount").val())
+        ad += adultcount;
+    })
+    sum = parseInt(ad)
+    $(a).closest("form").find(".count-adultRoom").text(' adult: ' + sum)
+
+}
+
+function increaseChild(a) {
+    var button = $(a);
+    var oldVal = parseInt(button.closest("ul").next().val());
+    var newVal = (button.text() == "+") ? oldVal + 1 : (oldVal > 0) ? oldVal - 1 : 0;
+    var total_value = "";
+    if (newVal >= 5) return;
+    button.closest("ul").next().val(newVal);
+    if (oldVal < newVal) {
+        var childCount = newVal;
+        button.closest(".contentRooms").find('.childDropdowns').empty()
+        for (i = 1; i <= childCount; i++) {
+            button.closest(".contentRooms").find('.childDropdowns').append('<div class="age-selection"><div class="label">child age ' + i + '</div><select class="select-age"><option value="1">Up to 1 year</option><option value="2">1 to 2</option><option value="3">2 to 3</option><option value="4">3 to 4</option><option value="5">4 to 5</option><option value="6">5 to 6</option><option value="7">6 TO 7</option><option value="8">7 to 8</option><option value="9">8 to 9</option><option value="10">9 to 10</option><option value="11">10 to 11</option><option value="12">11 to 12</option></select><div class="clr"></div></div>');
+        }
+
+    }
+    total_value = total_value.substring(0, total_value.length - 2);
+    SumChild(a)
+}
+
+function decreaseChild(a) {
+    var button = $(a);
+    var oldVal = parseInt(button.closest("ul").next().val());
+    var newVal = (button.text() == "+") ? oldVal + 1 : (oldVal > 0) ? oldVal - 1 : 0;
+    var total_value = "";
+    button.closest("ul").next().val(newVal);
+    if (oldVal > newVal) {
+        var childCount = newVal;
+        destroyChildDropdownRoom(button.closest(".contentRooms").find('.childDropdowns'), newVal);
+    }
+    total_value = total_value.substring(0, total_value.length - 2);
+    SumChild(a)
+}
+
+function SumChild(a) {
+    var ch = 0;
+    var sum = 0;
+    $(a).closest("form").find(".countRoomHT").find(".contentRooms").each(function () {
+        var chcount = parseInt($(this).find(".chcount").val())
+        ch += chcount;
+    })
+    sum = parseInt(ch)
+    $(a).closest("form").find(".count-childRoom").text(' child: ' + sum)
+
+}
+$(".Basis_Date").click(function () {
+    $("#app").hide()
+})
+$(".button-click a").on("click", function () {
+    $("#app").hide()
+    var button = $(this);
+    var oldVal = parseInt(button.closest("ul").next().val());
+    var newVal = (button.text() == "+") ? oldVal + 1 : (oldVal > 0) ? oldVal - 1 : 0;
+    if (newVal >= 10) return;
+    if (newVal < 1) return;
+    button.closest("ul").next().val(newVal);
+    $(".cat_textbox").each(function () {
+        var cat = $(this).next('span').text();
+    });
+    $(".hotel-inputF").attr('placeholder', '')
+    $(".count-adult").text(' adult: ' + newVal)
+    $(".fclass").removeClass("firstfclass")
+});
+var createChildDropdown = function (i) {
+    var $childDropdown = $('<div />', {
+        'class': 'createChildDropdown'
+    });
+    $childDropdown.append($('<label />', {
+        'for': 'select-age-' + i
+    }).text('child age ' + i));
+    $childDropdown.append($('<select />'));
+    var options = ['Up to 1 year', '1 to 2 years ', '2 to 3 years', '3 to 4 years ', '4 to 5 years', '5 to 6 years', '6 to 7 years', '7 to 8 years', '8 to 9 years', '9 to 10 years', '10 to 11 years', '11 to 12 years'];
+    options.forEach(function (option, index) {
+        $childDropdown.find('select').append($('<option />').text(option).attr('value', index + 1));
+    });
+    return $childDropdown;
+};
+var destroyChildDropdown = function ($el, i) {
+    $el.find('div.createChildDropdown').get(i).remove();
+};
+
+$(".button-click-child a").on("click", function () {
+    $("#app").hide()
+    var button = $(this);
+    var oldVal = parseInt(button.closest("ul").next().val());
+    var newVal = (button.text() == "+") ? oldVal + 1 : (oldVal > 0) ? oldVal - 1 : 0;
+    var total_value = "";
+    if (newVal >= 5) return;
+    button.closest("ul").next().val(newVal);
+    button.closest("ul").prev().val(newVal + ',');
+    button.closest("form").find(".cat_textbox").each(function () {
+        var cat = $(this).next('span').text();
+        total_value += cat + ": " + $(this).val() + "، ";
+    });
+    if (oldVal < newVal) {
+        button.closest("form").find('.childDropdowns').append(createChildDropdown(newVal));
+    } else if (oldVal > newVal) {
+        destroyChildDropdown(button.closest("form").find('.childDropdowns'), newVal);
+    }
+    total_value = total_value.substring(0, total_value.length - 2);
+    $(".count-child").text(' child: ' + newVal)
+    $(".fclass").removeClass("firstfclass")
+});
+$(".search-service").click(function () {
+    s = $(this).closest("form").find(".childcountinput").val();
+    if (s == "0,") {
+        $(this).closest("form").find(".childcountinput").val(0)
+    }
+    $(this).closest("form").find(".contentRooms").each(function () {
+
+        var childCount = $(this).find(".chcount").val();
+
+        var childAge = "";
+        $(this).find(".select-age").each(function () {
+            childAge = childAge + ',' + $(this).val();
+        });
+
+        $(this).find(".childcountandage").val(childCount + childAge);
+    });
+});
+
+// searchbox Origin & destination change starts
+
+function SelectPlace(element) {
+    var idSelected = $(element).attr("data-id")
+    var textSelected = $(element).find("span").text()
+    var textSelected_split = textSelected.split("-")
+    $(element).closest(".city").find(".text-value").val(textSelected)
+    $(element).closest(".city").find(".co-id").val(idSelected)
+    $(element).closest(".city").find(".split-text").text(textSelected_split[0])
+    $(element).closest(".city").find(".searchList").fadeOut()
+    $(element).closest(".city").next(".city").find(".searchList").fadeIn()
+    $(element).closest(".city").next(".city").find(".click-content").trigger("onclick") 
+}
+
+
+$(".customized-icon-searchbox-exchange").click(function () {
+    var dep = $(this).closest("form").find(".FCD1").val()
+    var des = $(this).closest("form").find(".FCD2").val()
+    var depid = $(this).closest("form").find(".FCDid1").val()
+    var desid = $(this).closest("form").find(".FCDid2").val()
+    var depTxt = $(this).closest("form").find(".dep-txt").text()
+    var desTxt = $(this).closest("form").find(".des-txt").text()
+    $(this).closest("form").find(".FCD1").val(des)
+    $(this).closest("form").find(".FCD2").val(dep)
+    $(this).closest("form").find(".FCDid1").val(desid)
+    $(this).closest("form").find(".FCDid2").val(depid)
+    $(this).closest("form").find(".dep-txt").text(desTxt)
+    $(this).closest("form").find(".des-txt").text(depTxt)
+});
+// searchbox Origin & destination change ends
+
+// searchbox searchList change starts
+function closeSuggestCountry(e) {
+    $(e).closest(".city").find(".searchList").slideUp();
+};
+$('.hotel-input , .count-adult , .count-child , .count-room , .count-adultRoom , .count-childRoom , .fclass, .pass-box, .pass-box .inner-city').click(function (e) {
+    $(this).parents('.city .inner-city').children('.HotelPassengers').toggleClass("block");
+    e.preventDefault();
+    return false;
+});
+$(document).on('click', function (event) {
+    if (!$(event.target).closest('.searchList,.country,.selectCountry,.city, .form-search-input').length) {
+        $(".searchList").slideUp();
+    }
+    if (!$(event.target).closest('.hotel-input , .count-adult , .count-child , .count-room , .count-adultRoom , .count-childRoom , .fclass , .HotelPassengers div , HotelPassengers span').length) {
+        $(".HotelPassengers").removeClass("block");
+    }
+})
+// searchbox searchList change ends
+</script>
+
+        <!----JS LIBRARY---->
+        <script src="https://cdn.basiscore.net/basisfly.com/js/reservation_react.production.min.js"></script>
+        <script src="https://cdn.basiscore.net/basisfly.com/js/reservation_react_dom.production.min.js"></script>
+        <script src="https://cdn.basiscore.net/basisfly.com/js/reservation_babel.min.js"></script>
+        <script src="https://cdn.basiscore.net/basisfly.com/js/reservation_react_paging.js"></script>
+        <!----JS LIBRARY---->
+        <script type="text/babel">
+function load_data(load_data) {
+class App extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            data: {},
+                data_currency: {},
+                library: null,
+                librarySecond: null,
+                perPage: 20,
+                currentPage: 1,
+                currentPage2: 2,
+                currentPage3: 3,
+                maxPage: null,
+                filterName: "",
+                adultcount: "",
+                childcount: "",
+                servicesid: "",
+                typeid: "",
+                infantcount: "",
+                productid: "",
+                provider: "",
+                providerid: "",
+                state_currency_unit: "",
+                state_currency_cost: 1,
+                state_floatdigit: "",
+                state_fdate: $(".start_date").val(),
+                state_select_age: $(".select-age-value").val(),
+                visibleOption: {},
+                loadingVisible: {},
+                loadingVisibleBtnClose:{},
+                state_active_btn: ""
+        };
+        this.services = [];
+        this.factortype = [];
+        this.serviceName= [];
+        this.serviceSans= [];
+        this.handleClick = this.handleClick.bind(this);
+    }
+    componentDidMount() {
+        this.setState(state => ({
+            ...state,
+            data: load_data
+        }), () => {
+            this.reorganiseLibrary()
+        })
+        let getCurrencyObject = localStorage.getItem('currencyObject');
+        let jsonCurrency = JSON.parse(getCurrencyObject);
+        //bitaa
+        if (jsonCurrency) {
+            if(jsonCurrency.currency_unit !== "IRR"){
+               if(jsonCurrency.floatdigit < 0){
+                this.setState({
+                    state_floatdigit: 2,
+                })
+               }else {
+                this.setState({
+                    state_floatdigit: jsonCurrency.floatdigit,
+                })
+               }
+            }else {
+                this.setState({
+                    state_floatdigit: jsonCurrency.floatdigit,
+                    
+                })
+            }
+            this.setState({
+                state_currency_unit: jsonCurrency.currency_unit,
+                state_currency_cost: jsonCurrency.currency_cost,
+            })
+          }
+
+    }
+    componentDidUpdate() {
+        //<!----END JS FARE FAMILY---->
+        if (document.querySelector(".currency-content")) {
+            const fieldTemp = document.querySelector(".currency-content-list");
+            document.querySelector(".currency-content").innerHTML = '';
+            document.querySelector(".currency-content").appendChild(fieldTemp);
+            document.querySelector(".currency-content-list").classList.add('currency-appended');
+            document.querySelector(".currency-appended").classList.remove('unvisible');
+        }
+    }
+    reorganiseLibrary = () => {
+        const { filterName, perPage, data } = this.state;
+        let library = data;
+        let librarySecond = data;
+        librarySecond = _.chunk(librarySecond, perPage);
+        this.setState({
+            librarySecond,
+            currentPage: 1,
+            maxPage: librarySecond.length === 0 ? 1 : librarySecond.length
+        })
+
+        if (filterName !== "") {
+                library = library.filter(item => {
+                    if (item.servicename.toLowerCase().includes(filterName))
+                        return item
+
+                }
+
+                )
+                let lenLibrary = library.length
+                $('.result-count').text(lenLibrary)
+            }
+        let lenLibrary = library.length
+        if (lenLibrary == undefined) {
+            $('.result-count').text(0)
+        } else {
+            $('.result-count').text(lenLibrary)
+        }
+
+        library = _.chunk(library, perPage);
+        this.setState({
+            library,
+            currentPage: 1,
+            maxPage: library.length === 0 ? 1 : library.length
+        })
+
+    }
+
+
+    // Previous Page
+    previousPage = event => {
+        this.handleReset(event);
+        this.handleClick(event);
+        this.setState({
+            currentPage: this.state.currentPage - 1,
+            currentPage2: this.state.currentPage2 - 1,
+            currentPage3: this.state.currentPage3 - 1
+        })
+    }
+
+    // Next Page 
+    nextPage = event => {
+        this.handleReset(event);
+        this.handleClick(event);
+        this.setState({
+            currentPage: this.state.currentPage + 1,
+            currentPage2: this.state.currentPage2 + 1,
+            currentPage3: this.state.currentPage3 + 1
+        })
+    }
+
+    // Next Page3
+    nextPage3 = event => {
+        this.handleReset(event);
+        this.handleClick(event);
+        this.setState({
+            currentPage: this.state.currentPage3,
+            currentPage2: this.state.currentPage3 + 1,
+            currentPage3: this.state.currentPage3 + 2
+        })
+    }
+
+    // handler per page
+    handlePerPage = (evt) =>
+        this.setState({
+            perPage: evt.target.value
+        }, () => this.reorganiseLibrary());
+
+    // handle filter name
+    handleFilterName = (event) => {
+        this.handleReset(event);
+        this.setState(
+            {
+                filterName: event.target.value.toLowerCase()
+            },
+            () => {
+                this.reorganiseLibrary();
+            }
+        )
+    }
+        
+    // handler render of library
+    renderLibrary = () => {
+        const { library, currentPage } = this.state;
+        if (!library || (library && library.length === 0)) {
+            return <div className="message-box-nodata dir-ltr">
+                <i className="icon-message-box">
+                    <svg width="50pt" height="50pt" fill="#666" version="1.0" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+                        <g transform="translate(0 512) scale(.1 -.1)">
+                            <path d="m593 5102c-100-35-171-115-193-216-8-36-10-508-8-1626l3-1575 21-46c28-60 87-119 150-150 47-23 59-24 306-29l257-5-459-430c-252-236-470-448-485-470-62-96-71-231-22-338 92-201 346-279 521-159 33 23 269 267 611 632 306 327 562 599 569 604 9 6 23 2 43-12 96-68 313-155 464-186 454-93 972 35 1285 317l51 46 1058 6 57 28c69 34 121 91 148 164 20 53 20 76 20 1633s0 1580-20 1633c-27 73-79 130-148 164l-57 28-2060 2c-1957 2-2063 2-2112-15zm4142-194c48-22 55-52 55-228v-160h-835c-908 0-877 2-903-55-15-33-15-57 0-90 26-57-5-55 903-55h835v-1296-1296l-68-68h-416-415l56 83c102 149 181 339 220 533 27 134 24 423-5 560-64 299-201 559-406 772-214 222-458 359-759 424-87 19-133 22-307 22s-220-3-307-22c-294-64-523-190-738-406-223-224-359-476-427-790-18-84-22-133-22-291 0-206 14-299 70-462 28-82 110-256 144-303 11-16 20-32 20-37s-20-25-44-46l-45-37h-341-342l-68 68v1296 1296h835c625 0 841 3 860 12 29 13 55 55 55 88s-26 75-55 88c-19 9-235 12-860 12h-835v166 166l68 68h2026c1549 0 2031-3 2051-12zm-1788-1077c282-58 509-182 693-378 454-486 454-1300-1-1787-211-226-500-362-845-396-645-65-1252 396-1381 1047-21 109-24 355-4 463 88 493 456 901 931 1032 190 53 410 59 607 19zm-1304-2478-66-74-168 166 146 134 154-152-66-74zm-293-138 84-85-50-52c-28-29-220-234-428-455-403-431-407-434-488-419-106 20-169 137-123 226 13 26 901 870 915 870 3 0 43-38 90-85z" />
+                            <path d="m2644 4509c-25-13-54-60-54-89 0-51 49-100 100-100s100 49 100 99c0 73-80 122-146 90z" />
+                            <path d="m2305 3320c-11-4-101-90-200-189-236-237-234-207-27-414l152-152-140-140c-146-146-176-188-165-233 8-34 338-369 381-388 17-7 42-10 55-7s93 73 177 157l152 151 153-151c83-84 163-154 176-157s35-1 50 4c40 15 379 358 386 391 10 46-19 87-165 233l-140 140 152 152c207 208 210 176-32 418-115 115-194 186-210 190-47 10-83-14-228-158l-142-141-143 141c-169 168-185 178-242 153zm185-384c147-147 174-165 228-151 16 4 85 64 175 153l147 146 87-87 88-87-153-153c-133-135-152-157-152-186 0-18 5-42 11-54s75-86 152-165l142-142-175-175-153 153c-151 149-154 152-197 152s-46-3-197-152l-153-153-174 174 152 155c149 150 152 155 152 197s-3 46-152 196l-152 153 84 85c47 47 87 85 89 85 3 0 71-65 151-144z" />
+                        </g>
+                    </svg> </i>
+                <div className="line-one font_20 font-weight text-right">
+                    برای جستجوی شما نتیجه ای یافت نشد
+                </div>
+                <div className="line-two text-right">
+                    برای دریافت نتیجه لطفا تاریخ و یا مسیر خود را تغییر دهید
+                </div>
+                <button className="background-color_1 color_white font_16 border-radius cursor-pointer" onClick={this.renderhomepage}>صفحه اصلی</button>
+            </div>
+
+        }
+        return library[currentPage - 1].map((item, i) => (
+            <div className="search-item transition service-item">
+                    {this.rendersevice(item,i)}
+            </div>
+        ))
+    }
+
+
+    render() {
+        const { library, currentPage, perPage, maxPage, librarySecond } = this.state;
+        return (
+            <div>
+                <div className="currency-content-list unvisible">
+                    <div className="currency-selected cursor-pointer" data-active="0" onClick={() => this.currency_selected_list()}><span>{this.localStorage_getCurrency()}{this.localStorage_expire()}</span></div>
+                    {this.renderCurrencyRate()}
+                </div>
+                <aside className="sidebar-content width_30 float-right">
+                    <div className="filters-container float-right width_100">
+                        <p className="section-timer">Remaining time : <span id="timer" className="font-color_2 font-weight EnNum font_20">00:00:00</span></p>
+                        <p className="section-counter"><span className="font-weight result-count EnNum">{this.renderCount()}</span> services found.</p>
+                        <div className="filter-container">
+                                <p className="filter-head"><span className="font_14">Service Name</span>
+                                    <div className="clr"></div>
+                                </p>
+                                <div className="filter-row">
+                                    <ul className="filter-body  text-center font_13">
+                                        <li className="width_100">
+                                            <input value={this.state.filterName} onChange={((e) => this.handleFilterName(e))} placeholder="Enter Service Name" className="inner filter-name-service"
+                                            />
+                                        </li>
+                                        <div className="clr"></div>
+                                    </ul>
+                                </div>
+                      </div>
+                    </div>
+                    <div className="filters-container float-right service-basket-cart">
+                        <p className="filter-head"><span className="font_14">Selected Service:</span></p>
+                        <div className="selected-services">{this.renderPrintbasket(this.state.serviceName)}</div>
+                        <form action="Test_Client_Show_Service_ver.2.bc" method="post" className="service-list-form">
+                                <input type="hidden" value={this.state.state_currency_unit} name="rate-unit" className="rate-unit" />
+                                <input type="hidden" value={this.state.state_currency_cost} name="rate-cost" className="rate-cost" />
+                                <input type="hidden" value={this.state.state_floatdigit} name="rate-floatdigit" className="rate-floatdigit" />
+                                <input type="hidden" value={this.state.servicesid} name="id" className="servicesid"/>
+                                <input type="hidden" value={this.state.typeid} name="factortype"/>
+                                <input type="hidden" value={this.state.productid} name="productid"/>
+                                <input type="hidden" value={this.state.adultcount} name="adultcount"/>
+                                <input type="hidden" value={this.state.childcount} name="childcount"/>
+                                <input type="hidden" value={this.state.infantcount} name="infants"/>
+                                <input type="hidden" value={this.state.provider} name="mainprovider"/>
+                                <input type="hidden" value={this.state.providerid} name="provider"/>
+                                <input type="hidden" value={this.state.state_select_age} name="select-age"/>
+                                <input type="hidden" value={this.state.state_fdate} name="fdate"/>
+                                <input type="hidden" value="[##cms.form.cityid##]" name="cityid"/>
+                                <input type="hidden" value="[##cms.form.coHotel##]" name="coHotel"/>
+                                <input type="hidden" value="[##cms.form.adult##]" name="adult" />
+                                <input type="hidden" value="[##cms.form.child##]" name="child" />
+                                <input type="hidden" value="Tem3" name="checkpreurl"/>
+                                <button type="submit">Book Now</button>
+                        </form>
+                      </div>
+                </aside>
+
+                <div className="result-content float-left ">
+                    <div className="result-items service">
+                        {this.renderLibrary()}
+                        <ul id="page-numbers">
+                            <li className="nexprev">
+                                {currentPage !== 1 && (
+                                    <button onClick={this.previousPage}><i className="fa fa-backward"></i></button>
+                                )}
+                            </li>
+                            <li className="controls-active background-color_2 font-weight">{this.state.currentPage}</li>
+                            {(this.state.currentPage2 < maxPage) && (<li className="controls" onClick={this.nextPage}>{this.state.currentPage2}</li>
+                            )}
+                            {(this.state.currentPage3 < maxPage) && (<li className="controls" onClick={this.nextPage3}>{this.state.currentPage3}</li>
+                            )}
+                            <li className="restControls">...</li>
+                            <li className="controls">{this.state.maxPage}</li>
+                            <li className="nexprev">
+                                {(this.state.currentPage < maxPage) && (<button onClick={this.nextPage}><i className="fa fa-forward"></i></button>
+                                )}
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        )
+    }
+
+    renderPrintbasket(element) {
+        var indents = [];
+        if (element !== undefined) {
+           var select_len = element.length
+        for (let i = 0; i < select_len; i++){
+            indents.push(<div className="each-select-item">
+                <div><span className="font_12 float-left font-color_2">Package</span><span className="font_14 selected-service-name">{element[i].name}</span></div>
+                <div><span className="font_12 float-left font-color_2">Sans</span><span className="font_14 selected-service-sans">{element[i].sans}</span></div>
+            </div>)
+        }
+        return indents
+        }
+
+  
+    }
+    rendersevice(element,i) {
+      
+            let indents = [];
+                indents.push(<div className="result-item p-relative">
+                            <input type="hidden" value={element.productid} name="productid"/>
+                            <div className="title font_18 color_font font-weight service-name">{element.service_type} - {element.servicename}</div>
+                            <div className="details-btn font_12 color_2 text-center cursor-pointer service-items-btn" data-active={`${this.state.state_active_btn[i] ? "1" : "0"}`} onClick={e => this.select_options(e, element, i)}>Select {element.service_type}</div>
+                            <div className="clr"></div>
+                            <div key={i} className={`${!this.state.loadingVisible[i] ? "unvisible" : "visible"}`}>
+                            <div id="ballsWaveG">
+                                <div id="ballsWaveG_1" className="ballsWaveG"></div>
+                                <div id="ballsWaveG_2" className="ballsWaveG"></div>
+                                <div id="ballsWaveG_3" className="ballsWaveG"></div>
+                                <div id="ballsWaveG_4" className="ballsWaveG"></div>
+                                <div id="ballsWaveG_5" className="ballsWaveG"></div>
+                                <div id="ballsWaveG_6" className="ballsWaveG"></div>
+                                <div id="ballsWaveG_7" className="ballsWaveG"></div>
+                                <div id="ballsWaveG_8" className="ballsWaveG"></div>
+                        </div>
+                    </div>
+                    <div key={i} className={`details-row p-relative ${!this.state.visibleOption[i] ? "unvisible" : "visible"}`}>
+                                <div className="details-item backgroud-color" >
+                                    <div className="close-btn" onClick={() => this.closeOptions(i)}><span className="fa fa-times cursor-pointer"></span></div>
+                                    {this.show_options(i, element)}
+                                    <div className="clr"></div>
+                                </div>
+                                <div className="clr"></div>
+                            </div>
+                            <div className="clr"></div>
+                        </div>)
+           
+            return (
+                indents
+            )
+        
+    }
+    handleSelect = (e,element) => {
+    let item = JSON.parse(element)
+    let object = JSON.parse(e.target.value)
+     let isChecked = e.target.checked
+     let productid = object.productid
+     let producttype = item.factortype
+     let productName = item.servicename
+     let SansName = object.name
+     let producttransferid = object.transferid
+     let productprovider = JSON.stringify(item.provider)
+     let productproviderid = JSON.stringify(item.provider.provider_id)
+     let productadult = JSON.stringify(item.passengercount.adult1)
+     let productchild= JSON.stringify(item.passengercount.child1)
+     let productinfant = JSON.stringify(item.passengercount.infant1)
+     let checked_json = '{"product":{'+'"productid":"'+productid+'","transferid":"'+producttransferid+'","type":"'+producttype+'","provider":'+productprovider+'}}'
+    if (isChecked) {
+        this.services.push(checked_json)
+        this.factortype.push(producttype)
+        // renderPrintbasket
+        //this.serviceName.push(productName)
+
+        this.serviceName.push({
+           "name": productName,
+           "sans": SansName
+        })
+
+        this.serviceSans.push(SansName)
+        this.setState({
+            adultcount : productadult,
+            childcount : productchild,
+            infantcount : productinfant,
+            productid : productid,
+            provider : productprovider,
+            providerid : productproviderid,
+        })
+    } else {
+        this.services.splice(this.services.indexOf(checked_json), 1)
+        this.factortype.splice(this.factortype.indexOf(producttype), 1)
+        this.serviceName.splice(this.serviceName.indexOf(productName), 1)
+        this.serviceSans.splice(this.serviceSans.indexOf(productName), 1)
+    }
+    if(this.services.length > 0){
+        document.querySelector('.service-list-form button').style.display = 'block';
+    }else {
+        document.querySelector('.service-list-form button').style.display = 'none';
+    }
+    this.setState({
+        servicesid : this.services,
+        typeid : this.factortype,
+        serviceName : this.serviceName,
+        serviceSans : this.serviceSans,
+    })
+   }
+    renderCount(element) {
+        let maxPage = this.state.maxPage
+        let len = this.renderLibrary().length
+        let sum = len * maxPage
+        sum = sum || 0
+        if (sum == '0') {
+            $("#page-numbers").hide()
+            $(".message-box-nodata").show()
+
+        } else {
+            $("#page-numbers").show()
+            $(".message-box-nodata").hide()
+        }
+
+    }
+    renderhomepage = event => {
+        return window.location = '/'
+    }
+
+        select_options = (e, element, i) => {
+            let active_btn = this.state.state_active_btn[i];
+            let provider = element.provider
+            let userid = [##db.userid.userid##]
+            let servicegroupid = element.servicegroupid
+            let licenseUniqueId = element.licenseUniqueId
+            if (active_btn == '' || active_btn == undefined) {
+                this.setState(prevState => ({
+                    state_active_btn: { ...prevState.state_active_btn, [i]: !prevState.state_active_btn[i] },
+                }))
+                this.showLoading(e, element, i);
+                this.setState(prevState => ({
+                    visibleOption: { ...prevState.visibleOption, [i]: !prevState.visibleOption[i] },
+                    loadingVisible: { ...prevState.loadingVisible, [i]: "" }
+                }))
+    }
+    }
+
+    show_options(i, item) {
+             let element = item;
+            if (!element) return null;
+            if (element.serviceItems !== undefined) {
+                let lenserviceItems = element.serviceItems.length
+                let indents = [];
+                for (let i = 0; i < lenserviceItems; i++) {
+                    indents.push(<div className="item-details-service">
+                        <div className="choose-serviceitem"><div className="section-input_2 p-relative" data-index="1"><input type="checkbox" value={JSON.stringify(element.serviceItems[i])} className="stops p-absolute" onChange={((e) => this.handleSelect(e,JSON.stringify(element)))}/><label><span className="checkbox"></span></label></div><div className="clr"></div></div>
+                        <input type="hidden" value={element.serviceItems[i].productid} name="productid"/>
+                        <div className="serviceitem-name color_font"><span>{element.serviceItems[i].name}</span> {this.rendertransfername(element.serviceItems[i].transfer_name)}</div>
+                        <div className="serviceitem-city color_font"><span>{element.serviceItems[i].cityname}</span></div>
+                        <div className="serviceitem-price"><span className="item-price font_11 margin-left color_font">Price:</span>
+                            <span className="item-cost font_14 font-weight">{new Intl.NumberFormat().format(this.renderTotal(element.serviceItems[i].totalCom, this.state.state_currency_cost, this.state.state_floatdigit))}</span>
+                            <span className="item-price font_11 margin-right color_font En-Num">{this.renderUnit(item.moneytype, this.state.state_currency_unit)}</span>
+                        </div>
+                        {this.renderCommission(item,element.serviceItems[i])}
+                    </div>)
+                }
+                return (
+                    indents
+                )
+            }
+
+            else {
+                return null
+            }
+    }
+    rendertransfername(element){
+        if(element){
+            return <span>- {element}</span>
+        }
+    }
+    //bitaa
+    renderTotal(element, currency_cost, floatdigit) {
+            if (floatdigit == '') {
+                return element * currency_cost;
+            } else {
+                let toString_element = (element * currency_cost).toString();
+                if(floatdigit >= 0){
+                    if (toString_element.indexOf('.') > -1) {
+                        let parseFloat_element = parseFloat(toString_element).toFixed(floatdigit).toString();
+                        let parseFloat_element_split = parseFloat_element.split('.');
+                        if (parseFloat_element_split[1].indexOf('0') > -1) {
+                           return parseFloat(element * currency_cost).toFixed(1).toString();
+                        } else {
+                           return parseFloat(element * currency_cost).toFixed(floatdigit).toString();
+                        }
+                    } else{
+                        return parseFloat(element * currency_cost).toFixed(floatdigit).toString();
+                    }
+                }else {
+                    let multiplier = Math.pow(10, Math.abs(floatdigit));
+                    let parseFloat_element = Math.round(toString_element * multiplier) / multiplier;
+                    return parseFloat_element;
+                }
+            }
+        }
+    renderUnit(element, currency_unit) {
+        if (currency_unit == '') {
+            return element;
+        } else {
+            return currency_unit;
+        }
+    }
+    renderCommission(item,element) {
+            if (element.commissioncost == 0) {
+                return ''
+            } else {
+                return <div className="commission-content dir-ltr"><div className="cost-item"><span className="font_10 color_font"> Total Price
+                    :</span><span className="item-cost font_12 font-weight">{new Intl.NumberFormat().format(this.renderTotal(element.total, this.state.state_currency_cost, this.state.state_floatdigit))}</span><span
+                        className="font_11 unit">{this.renderUnit(element.moneytype, this.state.state_currency_unit)}</span></div>
+                    <div className="cost-item"><span className="font_10 color_font">Commission
+                        :</span><span className="item-cost font_12 font-weight">{new Intl.NumberFormat().format(this.renderTotal(element.commissioncost, this.state.state_currency_cost, this.state.state_floatdigit))}</span><span
+                            className="font_11 unit">{this.renderUnit(element.moneytype, this.state.state_currency_unit)}</span></div>
+                </div>
+            }
+        }
+    closeOptions = (elem) => {
+            this.setState(prevState => ({
+                visibleOption: { ...prevState.visibleOption, [elem]: "" },
+                state_active_btn: { ...prevState.state_active_btn, [elem]: "" },
+            }))
+        }
+    showLoading = (e, elem, val) => {
+            this.setState(prevState => ({
+                loadingVisible: { ...prevState.loadingVisible, [val]: !prevState.loadingVisible[val] }
+            }))
+        };
+    handleClick(event) {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth',
+        })
+        this.setState({
+            currentPage: Number(event.target.id)
+        })
+    }
+
+    handleReset(event) {
+            let maxPage = this.state.maxPage
+            let len = this.renderLibrary().length
+            let Multi = len * maxPage
+            for (let i = 0; i <= Multi; i++) {
+                this.setState(prevState => ({
+                    visibleOption: { ...prevState.visibleOption, [i]: "" },
+                    state_active_btn: { ...prevState.state_active_btn, [i]: "" },
+                }))
+            }
+        }
+        localStorage_getCurrency = () => {
+            let getCurrencyObject = localStorage.getItem('currencyObject');
+            let jsonCurrency = JSON.parse(getCurrencyObject);
+            if (jsonCurrency) {
+                return jsonCurrency.currency_unit
+            } else {
+                return '--Currency--'
+            }
+        }
+        localStorage_expire = () => {
+            const { state_currency_unit, state_currency_cost, state_floatdigit } = this.state
+            let getCurrencyObject = localStorage.getItem('currencyObject');
+            let jsonCurrency = JSON.parse(getCurrencyObject);
+            if (jsonCurrency) {
+                var timer = setInterval(() => {
+                    if (new Date().getTime() - jsonCurrency.time >= jsonCurrency.expire) {
+                        localStorage.removeItem('currencyObject');
+                        document.querySelector(".currency-selected").innerText = '--Currency--';
+                        document.querySelector(".currency-selected").setAttribute("data-active", 0);
+                        clearInterval(timer);
+                        this.setState({
+                            state_currency_unit: "",
+                            state_currency_cost: 1,
+                            state_floatdigit: "",
+                        });
+                        console.log('localStorage has ex pired');
+                    }
+                }, 1000)
+            }
+        }
+        currency_selected_list = () => {
+            if (document.querySelector(".currency-selected").getAttribute("data-active") == 0) {
+                document.querySelector(".currency-loading").classList.toggle("unvisible");
+                fetch('/Client_Currency_Rate.bc')
+                    .then(response => response.text())
+                    .then(text => {
+                        this.setState({ data_currency: JSON.parse(text.replace(/\'/g, '"')) });
+                        document.querySelector(".currency-loading").classList.toggle("unvisible");
+                        document.querySelector(".currency-selected").setAttribute("data-active", 1);
+                        document.querySelector(".currency-list").classList.toggle("unvisible");
+                    }).catch(error => console.error(error))
+
+            } else {
+                document.querySelector(".currency-list").classList.toggle("unvisible");
+            }
+
+        }
+        renderCurrencyRate() {
+            let element = this.state.data_currency;
+            if (!element) return null;
+            return <div className="currency-list unvisible float-left font_12 p-absolute"><ul>{this.renderRate(element.rate, element.floatdigit)}</ul></div>
+        }
+        renderRate(element, floatdigit) {
+            if (element !== undefined) {
+                let indents = [];
+                for (let i = 0; i < element.length; i++) {
+                    indents.push(<li className="" onClick={e => this.select_currency_list(e, element[i], floatdigit)}>{element[i].rate_unit}</li>)
+                }
+                return (
+                    indents
+                )
+            }
+        }
+
+        //bitaa
+       select_currency_list = (e, element, floatdigit) => {
+            if(element.rate_unit !== "IRR"){
+               if(floatdigit < 0){
+                this.setState({
+                    state_floatdigit: 2,
+                })
+               }else {
+                this.setState({
+                    state_floatdigit: floatdigit,
+                })
+               }
+            }else {
+                this.setState({
+                    state_floatdigit: floatdigit,
+                    
+                })
+            }
+            this.setState({
+                state_currency_unit: element.rate_unit,
+                state_currency_cost: element.rate_cost,
+            });
+            document.querySelector(".currency-list").classList.toggle("unvisible");
+            document.querySelector(".currency-selected").innerText = element.rate_unit;
+            localStorage_setCurrency(element.rate_unit, element.rate_cost, floatdigit) //-----THIS FUNCTION IS WRITTEN IN CORE.MIN.JS
+
+        }
+
+}
+ReactDOM.render(<App />, document.getElementById('app'))
+}
+</script>
+                <script type="text/javascript">
+               function onloadFunc(){
+                var counter = 600;
+                setInterval(function() {
+                    counter--;
+                  var m = parseInt(counter / 60);
+                    var s = counter % 60;
+                    if (counter >= 0) {
+                        span = document.getElementById("timer");
+                        if(span !== null){
+                            if(s<10){s="0"+s;}
+                            if(m<10){m="0"+m;}
+                            if(m<2){document.getElementById("timer").classList.add("blink_me")}
+                            span.innerHTML ="00:"+m+":"+s;
+                        }
+                    }
+                    if (counter === 0) {
+                        $(".message_box,#bg-popup").fadeIn();
+                        $(".message_box").css("top","200px") 
+                        clearInterval(counter);
+                    }
+                }, 1000);
+            
+               };
+              </script>
+</body>
+</html>

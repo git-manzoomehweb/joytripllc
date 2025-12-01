@@ -1,0 +1,367 @@
+<basis core="group" name="noprice" if="'[##cms.form.price##]' = ''">
+    <script type="text/javascript">
+        //<!------EXTERA SERVICE------->//
+        var sum_extra_service = 0;
+        $("#passengers").find(".passengerInfo").each(function () {
+            if ($(this).find(".extra_service_cost_output").val()) {
+                sum_extra_service += parseFloat($(this).find(".extra_service_cost_output").val())
+            } else {
+                sum_extra_service += 0
+            }
+        })
+        //<!------EXTERA SERVICE------->//
+        $(".c_code").val("0")
+        var getcredit_amount = $(".getcredit_amount").val()
+        var insplus = $(".instotalrow").text()
+        var insplusprice = $(".fhipricenocoupon").val()
+        var insplusprice_totalCom = parseFloat($(".fhipricenocoupon_totalCom").val()) + parseFloat(sum_extra_service)
+        var price_firstpay = parseFloat($(".price_firstpay").val()) + parseFloat(sum_extra_service) 
+        var totalWith_commission = parseFloat($(".totalcom").val()) + parseFloat(sum_extra_service)
+        if (insplus.length > 0) {
+            $(".PriceByInsurance").text(insplusprice)
+            $(".PriceByInsurance").each(function () {
+                $(this).text(new Intl.NumberFormat().format($(this).text()))
+            })
+            //<!------PAYMENT BY CREDIT------->//
+            $(".price_remaining_of_credit").text(parseFloat(parseFloat(getcredit_amount) - parseFloat(insplusprice_totalCom)))
+            $(".price_remaining_of_credit").text(new Intl.NumberFormat().format($(".price_remaining_of_credit").text()))
+            $(".PriceByInsurance_totalCom").text(insplusprice_totalCom)
+            $(".PriceByInsurance_totalCom").text(new Intl.NumberFormat().format($(".PriceByInsurance_totalCom").text()))
+            //<!------PAYMENT BY CREDIT------->//
+        } else {
+            $(".finalprice").text(price_firstpay)
+            $(".finalprice").each(function () {
+                $(this).text(new Intl.NumberFormat().format($(this).text()))
+            })
+            //<!------PAYMENT BY CREDIT------->//
+            $(".price_remaining_of_credit").text(parseFloat(parseFloat(getcredit_amount) - parseFloat(totalWith_commission)))
+            $(".price_remaining_of_credit").text(new Intl.NumberFormat().format($(".price_remaining_of_credit").text()))
+            $(".finalprice_totalCom").text(totalWith_commission)
+            $(".finalprice_totalCom").text(new Intl.NumberFormat().format($(".finalprice_totalCom").text()))
+            //<!------PAYMENT BY CREDIT------->//
+
+        }
+           //<!------START FUNCTION MULTI CURRENCY------->//
+           currency_rate()
+          //<!------END FUNCTION MULTI CURRENCY------->//
+       
+    </script>
+</basis>
+<basis core="group" name="trueprice" if="'[##cms.form.price##]' <> ''">
+    <!-- add service -->
+    <basis core="group" name="noservice" if="'[##cms.form.type##]' = ''">
+    <basis core="external.fly.ws" source="cmsDbService2" procedurename="dbsource" name="db">
+        <member name="checkcoupon" method="site" query='{
+            "name": "db",
+            "mid": "20",
+            "member": [
+                {
+                  "name": "q",
+                   "type": "scalar",
+                   "request": "checkcoupon",
+                    "accounttype": "[##cms.form.accounttype##]",
+                    "code" : "[##cms.form.couponcode##]",
+                    "price": "[##cms.form.price##]",
+                    "firstpay": "[##cms.form.firstpay|(0)##]",
+                   "trackingNo": "[##cms.cookie.trackingid##]",
+                    "schemaid": ["[##cms.form.schemaid##]"],
+                    "provider": ["[##cms.form.provider##]"],
+                    "coupondata": [##cms.form.coupondata##],
+                    "dmnid": "[##cms.cms.domainid##]",
+                    "userid":"[##cms.form.userid##]"
+   }      
+    ]}' preview="" />
+    </basis>
+    <basis core="group" name="g1-1">
+        <basis core="inlinesource" name="db">
+            <member name="coupon" format="json" postsql="select * from [db.coupon]" preview="">
+                {"root":[##db.checkcoupon.result##]}</member>
+        </basis>
+        <basis core="group" name="g2">
+            <basis core="tree" datamembername="db.coupon" idcol="id" parentidcol="parentid" nullvalue="null">
+                <layout>
+                    <div class="coupon_info">@child
+                        <div class="clr"></div>
+                    </div>
+                </layout>
+                <face filter="Field = 'code' and Value='4'">
+                    <input type="hidden" value="4" class="result_code" />
+                    <span class="not-activecoupon">Coupon code used!</span>
+                </face>
+                <face filter="Field = 'code' and Value='3'">
+                    <input type="hidden" value="3" class="result_code" />
+                    <span class="not-activecoupon">There is no coupon with this information!</span>
+                </face>
+                <face filter="Field = 'code' and Value='2'">
+                    <input type="hidden" value="2" class="result_code" />
+                    <span class="not-activecoupon">There is no coupon code for this product !</span>
+                </face>
+                <face filter="Field = 'code' and Value='1'">
+                    <input type="hidden" value="1" class="result_code" />
+                    <span class="not-activecoupon">The amount of the product is less than the amount of the
+                        coupon!</span>
+                </face>
+                <face filter="Field = 'coupon_price'">
+                    <input type="hidden" value="0" class="result_code" />
+                    <span class="activecoupon">Coupon code is active !</span><span>Discount amount
+                        :</span> @child
+                </face>
+                <face filter="Field = 'cost' and Path = '.root.coupon_price.cost'">
+                    <span class="coupon_price">@value</span>
+                </face>
+                <face filter="Field = 'unit' and Path = '.root.coupon_price.unit'">
+                    <span>@value ، </span>
+                    <input type="hidden" class="unit_couponprice" value="@value" />
+                </face>
+                <face filter="Field = 'buy_price'">
+                    @child
+                </face>
+
+                <face filter="Field = 'firstpay' and Path = '.root.buy_price.firstpay'">
+                    <span style="margin-right: 10px;">Price payable with discount deduction :</span><span
+                        class="couponprice firstpay_by_coupon">@value</span>
+                    <input type="hidden" value="@value" class="firstpay_by_coupon_value" />
+                    <input type="hidden" value="[##cms.form.transfer_for_coupon##]" class="check-transfer"/>
+                </face>
+                <face filter="Field = 'unit' and Path = '.root.buy_price.unit'">
+                    <span>@value</span>
+                </face>
+                <face filter="Field = 'cost' and Path = '.root.buy_price.cost'">
+                    <input type="hidden" value="@value" class="totalcom_by_coupon_value" />
+                </face>
+
+                <face filter="type in ('array','object')">@child</face>
+            </basis>
+        </basis>
+    </basis>
+    <script type="text/javascript">
+        //<!------EXTERA SERVICE------->//
+        var sum_extra_service = 0;
+        $("#passengers").find(".passengerInfo").each(function () {
+            if ($(this).find(".extra_service_cost_output").val()) {
+                sum_extra_service += parseFloat($(this).find(".extra_service_cost_output").val())
+            } else {
+                sum_extra_service += 0
+            }
+        })
+        //<!------EXTERA SERVICE------->//
+        if ($(".unit_couponprice").val() !== 'Percentage') {
+            $(".coupon_price").text(new Intl.NumberFormat().format($(".coupon_price").text()))
+        }
+        $(".couponprice").each(function () {
+            $(this).text(new Intl.NumberFormat().format($(this).text()))
+        })
+        var getcredit_amount = $(".getcredit_amount").val();
+        //<!------TRANSFER SERVICE------->//
+        var check_transfer =0;
+        if($(".check-transfer").val()){
+            check_transfer = $(".check-transfer").val();
+            $(".firstpay_by_coupon").text(parseFloat($(".firstpay_by_coupon_value").val()) + parseFloat(sum_extra_service)+ parseFloat(check_transfer))
+            $(".firstpay_by_coupon").text(new Intl.NumberFormat().format($(".firstpay_by_coupon").text()))
+        }
+        //<!------TRANSFER SERVICE------->//
+        var totalcom_by_coupon_value = parseFloat($(".totalcom_by_coupon_value").val()) + parseFloat(sum_extra_service)
+        var firstpay_by_coupon_value = parseFloat($(".firstpay_by_coupon_value").val()) + parseFloat(sum_extra_service)+ parseFloat(check_transfer)
+        var price_firstpay = parseFloat($(".price_firstpay").val()) + parseFloat(sum_extra_service) + parseFloat(check_transfer)
+        var totalWith_commission = parseFloat($(".totalcom").val()) + parseFloat(sum_extra_service)
+        var insplus = $(".instotalrow").text()
+        if ($(".result_code").val() == 0) {
+            $(".c_code").val("[##cms.form.couponcode##]")
+            //<!------PAYMENT BY CREDIT------->//
+            $(".price_remaining_of_credit").text(parseFloat(parseFloat(getcredit_amount) - parseFloat(
+                totalcom_by_coupon_value)))
+         
+            $(".price_remaining_of_credit").text(new Intl.NumberFormat().format($(".price_remaining_of_credit").text()))
+            $(".finalprice_totalCom").text(totalcom_by_coupon_value)
+            $(".finalprice_totalCom").text(new Intl.NumberFormat().format($(".finalprice_totalCom").text()))
+    
+            //<!------PAYMENT BY CREDIT------->//
+            if (insplus.length > 0) {
+                $(".PriceByInsurance").each(function () {
+                    $(this).text(firstpay_by_coupon_value)
+                    $(this).text(new Intl.NumberFormat().format($(this).text()))
+                })
+            } else {
+                $(".finalprice").each(function () {
+                    $(this).text(firstpay_by_coupon_value)
+                    $(this).text(new Intl.NumberFormat().format($(this).text()))
+                })
+
+
+            }
+        } else {
+            $(".c_code").val("0")
+            if (insplus.length > 0) {
+                var insplusprice = $(".fhipricenocoupon").val()
+                var insplusprice_totalCom = parseFloat($(".fhipricenocoupon_totalCom").val()) + parseFloat(
+                    sum_extra_service)
+                //<!------PAYMENT BY CREDIT------->//
+                $(".price_remaining_of_credit").text(parseFloat(parseFloat(getcredit_amount) - parseFloat(
+                    insplusprice_totalCom)))
+                $(".price_remaining_of_credit").text(new Intl.NumberFormat().format($(".price_remaining_of_credit").text()))
+                $(".PriceByInsurance_totalCom").text(insplusprice_totalCom)
+                $(".PriceByInsurance_totalCom").text(new Intl.NumberFormat().format($(".PriceByInsurance_totalCom").text()))
+                //<!------PAYMENT BY CREDIT------->//
+                $(".PriceByInsurance").each(function () {
+                    $(this).text(insplusprice)
+                    $(this).text(new Intl.NumberFormat().format($(this).text()))
+                })
+
+            } else {
+                $(".finalprice").each(function () {
+                    $(this).text(price_firstpay)
+                    $(this).text(new Intl.NumberFormat().format($(this).text()))
+                })
+                //<!------PAYMENT BY CREDIT------->//
+                $(".price_remaining_of_credit").text(parseFloat(parseFloat(getcredit_amount) - parseFloat(
+                    totalWith_commission)))
+                $(".price_remaining_of_credit").text(new Intl.NumberFormat().format($(".price_remaining_of_credit").text()))
+                $(".finalprice_totalCom").text(totalWith_commission)
+                $(".finalprice_totalCom").text(new Intl.NumberFormat().format($(".finalprice_totalCom").text()))
+                //<!------PAYMENT BY CREDIT------->//
+            }
+        }
+          //<!------START FUNCTION MULTI CURRENCY------->//
+           currency_rate()
+          //<!------END FUNCTION MULTI CURRENCY------->//
+    </script>
+    </basis>
+    <!-- add service -->
+    <!-- add service -->
+    <basis core="group" name="service" if="'[##cms.form.type##]' = 'service'">
+        <basis core="external.fly.ws" source="cmsDbService5" procedurename="dbsource" name="db">
+            <member name="checkcoupon" method="site" query='{
+                "name": "db",
+                "mid": "20",
+                "member": [
+                    {
+                      "name": "q",
+                       "type": "scalar",
+                       "request": "checkcoupon",
+                        "accounttype": "[##cms.form.accounttype##]",
+                        "code" : "[##cms.form.couponcode##]",
+                        "price": "[##cms.form.price##]",
+                        "firstpay": "[##cms.form.firstpay|(0)##]",
+                       "trackingNo": "[##cms.cookie.trackingid##]",
+                        "schemaid": ["[##cms.form.schemaid##]"],
+                        "provider": ["[##cms.form.provider##]"],
+                        "productid": "[##cms.form.coupondata##]",
+                        "dmnid": "[##cms.cms.domainid##]",
+                        "userid":"[##cms.form.userid##]"
+        }      
+        ]}' preview="" />
+        </basis>
+        <basis core="group" name="g1-2">
+            <basis core="inlinesource" name="db">
+                <member name="coupon" format="json" postsql="select * from [db.coupon]" preview="">
+                    {"root":[##db.checkcoupon.result##]}</member>
+            </basis>
+            <basis core="group" name="g2">
+                <basis core="tree" datamembername="db.coupon" idcol="id" parentidcol="parentid" nullvalue="null">
+                    <layout>
+                        <div class="coupon_info">@child
+                            <div class="clr"></div>
+                        </div>
+                    </layout>
+                    <face filter="Field = 'code' and Value='4'">
+                        <input type="hidden" value="4" class="result_code" />
+                        <span class="not-activecoupon">Coupon code used!</span>
+                    </face>
+                    <face filter="Field = 'code' and Value='3'">
+                        <input type="hidden" value="3" class="result_code" />
+                        <span class="not-activecoupon">There is no coupon with this information!</span>
+                    </face>
+                    <face filter="Field = 'code' and Value='2'">
+                        <input type="hidden" value="2" class="result_code" />
+                        <span class="not-activecoupon">There is no coupon code for this product !</span>
+                    </face>
+                    <face filter="Field = 'code' and Value='1'">
+                        <input type="hidden" value="1" class="result_code" />
+                        <span class="not-activecoupon">The amount of the product is less than the amount of the
+                            coupon!</span>
+                    </face>
+                    <face filter="Field = 'coupon_price'">
+                        <input type="hidden" value="0" class="result_code" />
+                        <span class="activecoupon">Coupon code is active !</span><span>Discount amount
+                            :</span> @child
+                    </face>
+                    <face filter="Field = 'cost' and Path = '.root.coupon_price.cost'">
+                        <span class="coupon_price">@value</span>
+                    </face>
+                    <face filter="Field = 'unit' and Path = '.root.coupon_price.unit'">
+                        <span>@value ، </span>
+                        <input type="hidden" class="unit_couponprice" value="@value" />
+                    </face>
+                    <face filter="Field = 'buy_price'">
+                        @child
+                    </face>
+    
+                    <face filter="Field = 'firstpay' and Path = '.root.buy_price.firstpay'">
+                        <span style="margin-right: 10px;">Price payable with discount deduction :</span><span
+                            class="couponprice firstpay_by_coupon">@value</span>
+                        <input type="hidden" value="@value" class="firstpay_by_coupon_value" />
+                        <input type="hidden" value="[##cms.form.transfer_for_coupon##]" class="check-transfer"/>
+                    </face>
+                    <face filter="Field = 'unit' and Path = '.root.buy_price.unit'">
+                        <span>@value</span>
+                    </face>
+                    <face filter="Field = 'cost' and Path = '.root.buy_price.cost'">
+                        <input type="hidden" value="@value" class="totalcom_by_coupon_value" />
+                    </face>
+    
+                    <face filter="type in ('array','object')">@child</face>
+                </basis>
+            </basis>
+        </basis>
+        <script type="text/javascript">
+
+        if ($(".unit_couponprice").val() !== 'percent') {
+            $(".coupon_price").text(new Intl.NumberFormat().format($(".coupon_price").text()))
+        }
+        $(".couponprice").each(function () {
+            $(this).text(new Intl.NumberFormat().format($(this).text()))
+        })
+        var getcredit_amount = $(".getcredit_amount").val();
+        //<!------TRANSFER SERVICE------->//
+
+        var totalcom_by_coupon_value = $(".totalcom_by_coupon_value").val()
+        var firstpay_by_coupon_value = $(".firstpay_by_coupon_value").val()
+        var price_firstpay = $(".price_firstpay").val()
+        var totalWith_commission = $(".totalcom").val()
+
+        if ($(".result_code").val() == 0) {
+            $(".c_code").val("[##cms.form.couponcode##]")
+            //<!------PAYMENT BY CREDIT------->//
+            $(".price_remaining_of_credit").text(parseFloat(parseFloat(getcredit_amount) - parseFloat(
+                totalcom_by_coupon_value)))
+         
+            $(".price_remaining_of_credit").text(new Intl.NumberFormat().format($(".price_remaining_of_credit").text()))
+            $(".finalprice_totalCom").text(totalcom_by_coupon_value)
+            $(".finalprice_totalCom").text(new Intl.NumberFormat().format($(".finalprice_totalCom").text()))
+    
+            //<!------PAYMENT BY CREDIT------->//
+            $(".finalprice").each(function () {
+                    $(this).text(firstpay_by_coupon_value)
+                    $(this).text(new Intl.NumberFormat().format($(this).text()))
+            })
+        } else {
+            $(".c_code").val("0")
+            $(".finalprice").each(function () {
+                    $(this).text(price_firstpay)
+                    $(this).text(new Intl.NumberFormat().format($(this).text()))
+                })
+                //<!------PAYMENT BY CREDIT------->//
+                $(".price_remaining_of_credit").text(parseFloat(parseFloat(getcredit_amount) - parseFloat(
+                    totalWith_commission)))
+                $(".price_remaining_of_credit").text(new Intl.NumberFormat().format($(".price_remaining_of_credit").text()))
+                $(".finalprice_totalCom").text(totalWith_commission)
+                $(".finalprice_totalCom").text(new Intl.NumberFormat().format($(".finalprice_totalCom").text()))
+                //<!------PAYMENT BY CREDIT------->//
+        }
+          //<!------START FUNCTION MULTI CURRENCY------->//
+           currency_rate()
+          //<!------END FUNCTION MULTI CURRENCY------->//
+        </script>
+    </basis>
+    <!-- add service -->
+</basis>
