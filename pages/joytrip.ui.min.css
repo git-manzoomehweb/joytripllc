@@ -1,3 +1,5 @@
+@import url(./customized.ui.min.css);
+
 /*<!--------------------------------START CSS DEFAULT-------------------------------*/
 @font-face {font-family: 'FG_icon';src: url("../fonts/fontIcon.eot?n1z373");src: url("../fonts/fontIcon.eot?#iefixn1z373") format("embedded-opentype"), url("../fonts/fontIcon.woff?n1z373") format("woff"), url("../fonts/fontIcon.ttf?n1z373") format("truetype"), url("../fonts/fontIcon.svg?n1z373#lg") format("svg");font-weight: normal;font-style: normal;}
 @font-face {font-family: 'Yesteryear';font-style: normal;font-weight: 400; src: url('https://fonts.gstatic.com/s/yesteryear/v14/dg4g_p78rroaKl8kRKo1n7sNTg.woff2') format('woff2');}
@@ -402,7 +404,7 @@ transform: rotate(360deg);
 .search-box-title{position: relative;top: 5em;}
 .search-box-title .title{ font-size: 5em;}
 .search-box-title .sub-title{color: #6b7280;font-size: 16px;margin-top: 1em;}
-.search-box-container .bc-main{position: relative;min-height: 550px;}
+.search-box-containers .bc-main{position: relative;min-height: 550px;}
 .bg-content { display: grid; grid-template-columns: 1fr 1fr; width: 50%; float: right; position: absolute;right: 0;}
 .bg-item-1{width: 97%;float: right;}
 .bg-item-1-1 {background: url(../images/search-bg-1.jpg);background-size: contain;min-height: 200px;width: 100%;background-position: center center;background-repeat: no-repeat;}
@@ -425,8 +427,8 @@ transform: rotate(360deg);
 .passenger_section .inner-container{width: 100% ;height: 80px;}
 #search .mini-loading {right: 1em; top: 1.5em; color: #d1d5db;font-size: 20px;}
 .searchList {min-width: 500px;box-shadow:0 20px 25px -5px rgba(0,0,0,.1),0 8px 10px -6px rgba(0,0,0,.1);z-index: 9;background-color: #fff;border-radius: 1.5rem;overflow: hidden;}
-.ul-list{max-height: 250px; overflow:auto;}
-.ul-list li{padding: 1em;position: relative;cursor: pointer;}
+/* .ul-list{max-height: 250px; overflow:auto;} */
+.ul-list li{padding: 1em;position: relative;cursor: pointer;display: flex;}
 .ul-list li:not(:first-child):hover{background-color:#f6f6f6}
 .inner-container {width: 97%;}
 .form_search-btn{border-radius: 100%;height: 65px;width: 65px;font-size: 20px;}
@@ -560,7 +562,7 @@ transform: rotate(360deg);
 .font_16{font-size: 14px;}  
 .font_14{font-size: 13px;}
 .show-contact-content{display: none;}
-.search-box-container .bc-main{background: #fff;}
+.search-box-containers .bc-main{background: #fff;}
 .search-box-title {display: none;}
 .input-container input,.count-passengers{font-size: 15px;}
 .input-container,.input-container input,.passenger_section .inner-container {height: 50px;}
@@ -672,7 +674,7 @@ padding: 5px 10px;display: block;color:  #505050;box-shadow: 0 0 10px rgba(0,0,0
 .show-contact-content{margin:0;}
 .search-box-title{top: initial;}
 .search-box-content,.login-box-content,.search-box-loader-content{top: initial;}
-.search-box-container .bc-main{min-height: auto;position: relative;}
+.search-box-containers .bc-main{min-height: auto;position: relative;}
 .bg-glass {top: 0;width: 100%;height: 100%;}
 .bg-content{display: none;}
 
@@ -717,7 +719,29 @@ padding: 5px 10px;display: block;color:  #505050;box-shadow: 0 0 10px rgba(0,0,0
     
     
 
-
-
-
-
+/* new searchbox */ .alert-adults,
+ .alert-passengers,
+ .alert-text {
+     width: 95% !important;
+     display: block !important;
+     top: 5px !important;
+     left: 0 !important;
+     right: 0 !important;
+     margin: 0 auto !important;
+     text-align: center !important;
+     background-color: rgb(253, 169, 169) !important;
+     color: rgb(123, 17, 17) !important;
+     font-weight: 900 !important;
+     position: absolute !important;
+     z-index: 99 !important;
+     border-radius: 6px !important
+ }
+.passengerbox{ box-shadow: 0 20px 25px -5px rgba(0, 0, 0, .1), 0 8px 10px -6px rgba(0, 0, 0, .1); z-index: 9; background-color: #fff; border-radius: 1.5rem;} li.plus-count, li.minus-count{ border: 1px solid var(--primary); border-radius: 9px;} .contentRoom{ margin-top: 1.5em !important;} #search-box .reserve-btn>.module-icon{ display: none !important;} .module-name{ line-height: initial; margin: 0; margin-top: 0px; padding: 0; margin-top: -5px;} #search-box .reserve-btn{ display: inline-block; margin-right: 1em; border-radius: 20px; padding: 0 1em; border: 1px solid #d1d5db; border-top-color: rgb(209, 213, 219); border-right-color: rgb(209, 213, 219); border-bottom-color: rgb(209, 213, 219); border-left-color: rgb(209, 213, 219);} #search-box .reserve-btn:hover, #search-box .active-module{ background: #000; border-color: #000; color: #fff; box-shadow: 0 0 #0000, 0 0 #0000, 0 20px 25px -5px rgba(0, 0, 0, .1), 0 8px 10px -6px rgba(0, 0, 0, .1);}
+ #search-box{ top: 6em; position: relative; z-index: 9;} #search-box>.m-auto.w-full>.clear-both.float-right.w-full{ float: none !important; clear: both !important} #search-box>.m-auto.w-full{ background-color: #fff; box-shadow: 0 0 #0000, 0 0 #0000, 0 20px 25px -5px rgba(0, 0, 0, .1), 0 8px 10px -6px rgba(0, 0, 0, .1); padding: 2em; border-radius: 49px; border-top-left-radius: 49px; border-top-right-radius: 49px; border-top-left-radius: 1.5rem; border-top-right-radius: 1.5rem;} .click-content, .show-passengers-dropdown.border-type-1.cursor-pointer.h-full.rounded-type-1.px-2, .Basis_Date_Box .reserve-field>.h-full.px-2{ display: flex !important; flex-direction: column-reverse !important;} .Basis_Date_Box .pt-12{ padding-top: 0 !important;} .auto-fit{ display: none !important;} 
+.reserve-search{ border-radius: 100% !important; height: 65px !important; overflow: hidden;
+    width: 65px !important; font-size: 20px !important; color: white !important; background-color: #ed2939 !important;} .reserve-search:hover{ background-color: #cf0000 !important;} .label-text{ color: #a6acb7 !important; font-size: 14px !important;} .reserve-search>button>span{ display: none !important;} .reserve-search>button>svg{ width: 25px !important; height: 27px !important;} .reserve-field input{ height: 80px !important; width: 100% !important; font-size: 20px !important; border-radius: 2em !important; font-family: WorkSans !important;} .show-passengers-dropdown>div.cursor-pointer{ display: flex;} .passenger-counts span{ height: 80px !important; font-size: 20px !important; font-family: WorkSans !important;} .passenger-counts{ display: flex !important;} .Basis_Date_Box .reserve-field.departure-date.w-auto.h-20.relative{ width: 50% !important;} .search-box-container .r-hotel .departure-date::after{ display: none !important;} .search-box-container label>svg.align-middle{ min-width: 25px !important; min-height: 25px !important; width: 25px !important; height: 25px !important; color: #a6acb7 !important;} .down-icon{ display: none !important;}
+.searchHistory-content.en-lang {
+    direction: ltr;
+    margin-top: 8em;
+}
+    /* new searchbox */
